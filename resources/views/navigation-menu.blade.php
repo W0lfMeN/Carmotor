@@ -12,16 +12,28 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('index') }}" :active="request()->routeIs('index')">
-                        {{ __('index') }}
+                    <x-jet-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
+                        {{ __('Listado de productos') }}
                     </x-jet-nav-link>
+
+                    @auth
+                    {{-- Aqui van las opciones en caso de que el usuario sea un admin (rol=2) --}}
+                        @if (Auth::user()->rol==2)
+                            <x-jet-nav-link href="{{ route('index') }}" :active="request()->routeIs('index')">
+                                {{ __('Admin User') }}
+                            </x-jet-nav-link>
+                        @endif
+                    @endauth
                 </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
 
+                <a href="#" class="flex text-black font-bold rounded fixed top-0 right-0 px-6 py-4 "><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
+
                 @if (Route::has('login'))
                     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+
                         @auth
                             {{-- Cuando está logueado --}}
 
@@ -119,7 +131,6 @@
                     </div>
                 @endif
 
-
             </div>
 
             <!-- Hamburger -->
@@ -141,10 +152,29 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('index') }}" :active="request()->routeIs('index')">
-                {{ __('Inicio') }}
+            <x-jet-responsive-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
+                {{ __('Listado de productos') }}
+            </x-jet-responsive-nav-link>
+
+            @auth
+                {{-- Aqui van las opciones en caso de que el usuario sea un admin (rol=2) --}}
+                @if (Auth::user()->rol==2)
+                <x-jet-responsive-nav-link href="{{ route('index') }}" :active="request()->routeIs('index')">
+                    {{ __('Admin User') }}
+                </x-jet-responsive-nav-link>
+                @endif
+            @endauth
+
+        </div>
+
+        {{-- Div del carrito de compra --}}
+        <div>
+            <x-jet-responsive-nav-link href="#" class="text-black font-bold border-y border-gray-200" :active="request()->routeIs('#')">
+                <p><i class="fa-solid fa-cart-shopping"></i>&nbsp;Carrito</p>
             </x-jet-responsive-nav-link>
         </div>
+
+
 
         @if (Route::has('login'))
                 @auth
