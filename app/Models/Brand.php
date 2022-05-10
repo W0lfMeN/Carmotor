@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
     use HasFactory;
-
+    protected $fillable=['nombre', 'descripcion'];
     /* Funciones */
 
     /* Funcion que se relaciona con la tabla Users */

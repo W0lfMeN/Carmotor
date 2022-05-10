@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $piezas=Product::where('cantidad', '!=', 0)->take(100)->get()->random(50);
+    $piezas=Product::where('cantidad', '!=', 0)->take(100)->get()->random(22);
     return view('dashboard', compact('piezas'));
 })->name('index');
 
@@ -26,4 +26,6 @@ Route::resource('products', ProductController::class); # Carga todas las rutas d
 Route::resource('userProducts', UserProductController::class); # Carga todas las rutas de userProducts
 Route::resource('brands', BrandController::class); # Carga todas las rutas de Brand
 
-/* Puede que falte el controller de Users */
+/* Puede que falte el controller de Users
+(Para que aparezca en una seccion de la administracion una tabla con los usuarios y poder darles derechos de admin o no,...)
+*/

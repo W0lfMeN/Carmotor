@@ -21,6 +21,11 @@
                 <x-jet-section-border />
             @endif
 
+            <div class="mt-10 sm:mt-0">
+                @livewire('profile.changeDirection-form')
+            </div>
+            <x-jet-section-border />
+
             @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.two-factor-authentication-form')

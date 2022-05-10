@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Actions\Jetstream\DeleteUser;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Jetstream;
+use Livewire\Livewire;
+use App\Http\Livewire\ProfileAddressInformationForm;
 
 class JetstreamServiceProvider extends ServiceProvider
 {
@@ -26,6 +28,7 @@ class JetstreamServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configurePermissions();
+        Livewire::component('profile.changeDirection-form', ProfileAddressInformationForm::class);
 
         Jetstream::deleteUsersUsing(DeleteUser::class);
     }

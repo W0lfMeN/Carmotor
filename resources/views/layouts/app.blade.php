@@ -20,6 +20,7 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <script type="text/javascript" src="{{asset('js/javascriptPersonal.js')}}"></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -40,6 +41,8 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <x-footer />
         </div>
 
         @stack('modals')

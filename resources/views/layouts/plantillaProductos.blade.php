@@ -23,6 +23,7 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <script type="text/javascript" src="{{asset('js/javascriptPersonal.js')}}"></script>
     </head>
     <body class="font-sans antialiased" style="background-color: blanchedalmond">
         <x-jet-banner />
@@ -42,6 +43,8 @@
             <main>
                 @yield('contenido')
             </main>
+
+            <x-footer />
         </div>
 
         @stack('modals')
