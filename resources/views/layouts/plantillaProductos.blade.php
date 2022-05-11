@@ -1,3 +1,4 @@
+{{-- Plantilla que usaré para casi toda la web --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -18,6 +19,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <link rel="stylesheet" href="{{asset('css/cssPersonal.css')}}">
 
         @livewireStyles
 

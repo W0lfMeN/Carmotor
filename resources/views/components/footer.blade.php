@@ -1,3 +1,4 @@
+{{-- Footer personalizado --}}
 <footer class="p-4 bg-white sm:p-6 dark:bg-gray-800">
     <div class="sm:flex sm:items-center sm:justify-between">
         <a href="{{route('index')}}" class="flex items-center mb-4 sm:mb-0">

@@ -1,9 +1,8 @@
 <?php
-
+/* Clase que nos ayudará con el añadido de la direccion del usuario */
 namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\Auth;
-use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 use Livewire\Component;
 
 class ProfileAddressInformationForm extends Component

@@ -28,7 +28,7 @@ class JetstreamServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configurePermissions();
-        Livewire::component('profile.changeDirection-form', ProfileAddressInformationForm::class);
+        Livewire::component('profile.changeDirection-form', ProfileAddressInformationForm::class); /* Añadimos esta linea para que se detecte como un componente livewire */
 
         Jetstream::deleteUsersUsing(DeleteUser::class);
     }

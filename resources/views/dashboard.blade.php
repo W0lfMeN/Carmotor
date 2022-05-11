@@ -39,7 +39,8 @@
     </div>
 </x-app-layout>
 
-{{-- <article class="w-full h-80 bg-cover bg-center @if ($loop->first) lg:col-span-2 @endif"
+{{--
+    <article class="w-full h-80 bg-cover bg-center @if ($loop->first) lg:col-span-2 @endif"
                     style="background-image: url({{Storage::url($pieza->imagen)}})">
                         <div class="flex flex-col justify-center w-full h-full">
                             <div>
@@ -54,4 +55,5 @@
                                 </div>
                             @endif
                         </div>
-                    </article> --}}
+                    </article>
+--}}

@@ -48,7 +48,7 @@
                             {{-- Cuando está logueado --}}
 
                             <!-- Settings Dropdown -->
-                            <div class="ml-3 relative">
+                            <div class="ml-3 relative" id="botonUser">
                                 <x-jet-dropdown align="right" width="48">
                                     <x-slot name="trigger">
                                         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -112,7 +112,7 @@
                             <div class="ml-3 relative">
                                 <x-jet-dropdown align="right" width="48">
                                     <x-slot name="trigger">
-                                        <button
+                                        <button id="botonUser"
                                             class="flex pt-2 text-xl border-2 border-transparent rounded-lg focus:outline-none focus:border-red-300 transition">
                                             &nbsp;<i class="fa-solid fa-user"></i>&nbsp;&nbsp;<i
                                                 class="fa-solid fa-caret-down"></i>&nbsp;

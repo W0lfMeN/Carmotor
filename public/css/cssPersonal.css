@@ -1,0 +1,13 @@
+/* Aqui van mi reglas css personalizadas */
+
+@media(max-width: 639px){
+    #botonCarrito{
+        display: none;
+        visibility: hidden;
+    }
+
+    #botonUser{
+        display: none;
+        visibility: hidden;
+    }
+}
