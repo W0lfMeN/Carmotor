@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use Exception;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -38,4 +40,21 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    /* Funcion que en caso de que haya una exception es ejecutada */
+    public function render($request, Throwable $exception)
+    {
+
+        /* Si es una exception de http entra */
+        if ($this->isHttpException($exception)) {
+
+            /* Si el numero del error es 404, se cargará la vista personalizada */
+            if ($exception->getStatusCode() == 404) {
+                return response()->view('errors.' . '404', [], 404);
+            }
+        }
+
+        return parent::render($request, $exception);
+    }
+
 }

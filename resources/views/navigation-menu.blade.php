@@ -18,13 +18,13 @@
 
                     @auth
                         {{-- Aqui van las opciones en caso de que haya un inicio de sesion cualquera --}}
-                        <x-jet-nav-link href="{{ route('index') }}" :active="request()->routeIs('index')" class="hover:bg-red-200">
+                        <x-jet-nav-link href="{{ route('userProducts.index') }}" :active="request()->routeIs('userProducts.index')" class="hover:bg-red-200">
                             {{ __('Tienda de Segunda mano') }}
                         </x-jet-nav-link>
 
                         {{-- Aqui van las opciones en caso de que el usuario sea un admin (rol=2) --}}
                         @if (Auth::user()->rol == 2)
-                            <x-jet-nav-link href="{{ route('index') }}" :active="request()->routeIs('index')" class="hover:bg-red-200">
+                            <x-jet-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')" class="hover:bg-red-200">
                                 {{ __('Admin User') }}
                             </x-jet-nav-link>
                         @endif

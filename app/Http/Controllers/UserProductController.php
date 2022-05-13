@@ -14,7 +14,19 @@ class UserProductController extends Controller
      */
     public function index()
     {
-        //
+        //Retornamos el view de la vista
+        return view('products_users.index');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index_admin()
+    {
+        //Retornamos el view de la vista
+        return view('products_users.index');
     }
 
     /**

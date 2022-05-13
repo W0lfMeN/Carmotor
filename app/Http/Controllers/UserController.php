@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class ProductController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,21 +15,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //Aqui se llama para retornar la vista de index de productos
-        return view('products.index');
+        //Retornamos la vista de users
+        try {
+            $users=User::where('id', '!=', Auth::user()->id)->sortable()->paginate(5)->withQueryString();
+        } catch (\Kyslik\ColumnSortable\Exceptions\ColumnSortableException $e) {
+            dd($e);
+        }
+        return view('adminDirectory.users.indexUsers', compact('users'));
     }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index_admin()
-    {
-        //Aqui se llama para retornar la vista de index de productos
-        return view('products.index');
-    }
-
 
     /**
      * Show the form for creating a new resource.
@@ -38,6 +32,7 @@ class ProductController extends Controller
     public function create()
     {
         //
+        return view('adminDirectory.users.createUser');
     }
 
     /**
@@ -54,33 +49,35 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(User $user)
     {
         //
+        return view('adminDirectory.users.showUser', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(User $user)
     {
         //
+        return view('adminDirectory.users.editUser', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -88,10 +85,10 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(User $user)
     {
         //
     }
