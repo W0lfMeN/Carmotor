@@ -18,8 +18,8 @@ return new class extends Migration
             $table->id();
 
             /* Elementos de la tabla */
-            $table->string('nombre');
-            $table->text('descripcion');
+            $table->string('nombre')->unique();
+            $table->text('descripcion')->nullable();
 
             $table->timestamps();
         });

@@ -12,20 +12,20 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')" class="hover:bg-red-200">
+                    <x-jet-nav-link href="{{ route('tienda') }}" :active="request()->routeIs('tienda')">
                         {{ __('Listado de productos') }}
                     </x-jet-nav-link>
 
                     @auth
                         {{-- Aqui van las opciones en caso de que haya un inicio de sesion cualquera --}}
-                        <x-jet-nav-link href="{{ route('userProducts.index') }}" :active="request()->routeIs('userProducts.index')" class="hover:bg-red-200">
+                        <x-jet-nav-link href="{{ route('tienda2Mano') }}" :active="request()->routeIs('tienda2Mano')">
                             {{ __('Tienda de Segunda mano') }}
                         </x-jet-nav-link>
 
                         {{-- Aqui van las opciones en caso de que el usuario sea un admin (rol=2) --}}
                         @if (Auth::user()->rol == 2)
                             <x-jet-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')" class="hover:bg-red-200">
-                                {{ __('Admin User') }}
+                                {{ __('Panel de Administracion') }}
                             </x-jet-nav-link>
                         @endif
 
@@ -164,20 +164,20 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')" class="hover:bg-red-200">
+            <x-jet-responsive-nav-link href="{{ route('tienda') }}" :active="request()->routeIs('tienda')">
                 {{ __('Listado de productos') }}
             </x-jet-responsive-nav-link>
 
             @auth
                 {{-- Aqui van las opciones en caso de que haya una sesion cualquiera iniciada --}}
-                <x-jet-responsive-nav-link href="{{ route('index') }}" :active="request()->routeIs('index')" class="hover:bg-red-200">
+                <x-jet-responsive-nav-link href="{{ route('tienda2Mano') }}" :active="request()->routeIs('tienda2Mano')">
                     {{ __('Tienda de Segunda Mano') }}
                 </x-jet-responsive-nav-link>
 
                 {{-- Aqui van las opciones en caso de que el usuario sea un admin (rol=2) --}}
                 @if (Auth::user()->rol == 2)
-                    <x-jet-responsive-nav-link href="{{ route('index') }}" :active="request()->routeIs('index')" class="hover:bg-red-200">
-                        {{ __('Admin User') }}
+                    <x-jet-responsive-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')" class="hover:bg-red-200">
+                        {{ __('Panel de administracion') }}
                     </x-jet-responsive-nav-link>
                 @endif
             @endauth

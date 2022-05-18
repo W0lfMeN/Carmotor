@@ -15,7 +15,13 @@ class ProductController extends Controller
     public function index()
     {
         //Aqui se llama para retornar la vista de index de productos
-        return view('products.index');
+        try {
+            $productos=Product::sortable('id')->paginate(10)->withQueryString();
+        } catch (\Kyslik\ColumnSortable\Exceptions\ColumnSortableException $e) {
+            dd($e);
+        }
+
+        return view('adminDirectory.productos.indexProductos', compact('productos'));
     }
 
     /**

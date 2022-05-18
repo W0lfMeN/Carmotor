@@ -8,7 +8,7 @@
             <p class="bg-red-300 text-red-300 text-xs mt-1 mb-9 w-32">
                 ______________
             </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                 @foreach ($piezasEnEscasez as $pieza)
                     {{--  --}}
                     <div class="rounded overflow-hidden @if($loop->iteration/4 <=1) mb-5 @else mb-10 @endif shadow-lg hover:shadow-2xl transform transition duration-500 hover:scale-110 ease-in-out">
@@ -22,11 +22,7 @@
                         <div class="px-2 mt-2 font-bold items-center">
                             {{$pieza->tipo}}
                         </div>
-                        <div class="px-6 pt-4 pb-2">
-                          @foreach ($pieza->brands as $brand)
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mt-1">{{$brand->nombre}}</span>
-                          @endforeach
-                        </div>
+
                         @if ($pieza->cantidad <= 3)
                             <div class="px-2 my-2 font-bold text-red-800 items-center">
                                 <h5>Solo quedan {{$pieza->cantidad}} en stock!!</h5>
@@ -45,7 +41,7 @@
             <p class="bg-red-300 text-red-300 text-xs mt-1 mb-9 w-32">
                 ______________
             </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                 @foreach ($piezasNuevas as $pieza)
                     {{--  --}}
                     <div class="rounded overflow-hidden @if($loop->iteration/4 <=1) mb-5 @else mb-10 @endif shadow-lg hover:shadow-2xl transform transition duration-500 hover:scale-110 ease-in-out">
@@ -61,11 +57,6 @@
                         </div>
                         <div class="px-2 mt-2 font-bold items-center">
                             Fecha de venta: {{date('d-m-Y', strtotime($pieza->fecha_venta))}}
-                        </div>
-                        <div class="px-6 pt-4 pb-2">
-                          @foreach ($pieza->brands as $brand)
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mt-1">{{$brand->nombre}}</span>
-                          @endforeach
                         </div>
                         @if ($pieza->cantidad <= 3)
                             <div class="px-2 my-2 font-bold text-red-800 items-center">
@@ -84,7 +75,7 @@
             <p class="bg-red-300 text-red-300 text-xs mt-1 mb-9 w-32">
                 ______________
             </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                 @foreach ($piezasInteresantes as $pieza)
                     {{--  --}}
                     {{-- Si la iteracion va  --}}
@@ -98,11 +89,6 @@
                         </div>
                         <div class="px-2 mt-2 font-bold items-center">
                             {{$pieza->tipo}}
-                        </div>
-                        <div class="px-6 pt-4 pb-2">
-                          @foreach ($pieza->brands as $brand)
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mt-1">{{$brand->nombre}}</span>
-                          @endforeach
                         </div>
                         @if ($pieza->cantidad <= 3)
                             <div class="px-2 my-2 font-bold text-red-800 items-center">
@@ -135,4 +121,13 @@
                             @endif
                         </div>
                     </article>
+--}}
+
+{{-- Bucle de marcas
+
+    <div class="px-6 pt-4 pb-2">
+        @foreach ($pieza->brands as $brand)
+            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 mt-1">{{$brand->nombre}}</span>
+        @endforeach
+    </div>
 --}}

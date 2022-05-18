@@ -1,6 +1,6 @@
 @extends('layouts.plantillaAdmin')
 @section('cabecera')
-Listado de Usuarios
+Listado de Productos
 @endsection
 @section('contenido')
 <div class="w-3/4 mx-auto px-2 mt-2">
@@ -13,8 +13,8 @@ Listado de Usuarios
     @endif
 
     <div class="my-4">
-        <a href="{{ route('users.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            <i class="fas fa-plus"></i> Crear Usuario</a>
+        <a href="{{ route('products.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <i class="fas fa-plus"></i> Añadir un producto</a>
     </div>
     <x-estructuraTabla>
         <table class="min-w-full divide-y divide-gray-200">
@@ -22,14 +22,15 @@ Listado de Usuarios
                 <tr>
                     <th scope="col">@sortablelink('id', 'ID')</i>
                     </th>
-                    <th scope="col">@sortablelink('name', 'Nombre')</i>
+                    <th scope="col">@sortablelink('nombre', 'Nombre')</i>
                     </th>
-                    <th scope="col">@sortablelink('email', 'Email')</i>
+                    <th scope="col">@sortablelink('fecha_venta', 'Fecha de venta')</i>
                     </th>
-                    <th scope="col" class="px-6 py-3 text-center text-xs font-bold uppercase tracking-wider">
-                        Direccion
+                    <th scope="col">@sortablelink('precio', 'Precio')</i>
                     </th>
-                    <th scope="col">@sortablelink('rol', 'Rol')</i>
+                    <th scope="col">@sortablelink('cantidad', 'Stock')</i>
+                    </th>
+                    <th scope="col">@sortablelink('tipo', 'Tipo')</i>
                     </th>
                     <th scope="col" colspan="2" class="px-6 py-3 text-center text-xs uppercase tracking-wider">
                         Acciones
@@ -37,10 +38,10 @@ Listado de Usuarios
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                @foreach ($users as $user)
+                @foreach ($productos as $producto)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <a href="{{ route('users.show', $user) }}"
+                            <a href="{{ route('products.show', $producto) }}"
                                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                 <i class="fas fa-info fa-xs"></i>
                             </a>
@@ -48,11 +49,11 @@ Listado de Usuarios
                         <td class="px-6 py-4">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-10 w-10">
-                                    <img class="h-10 w-10 rounded-full" src="{{ $user->getProfilePhotoUrlAttribute() }}" alt="">
+                                    <img class="h-10 w-10 rounded-full" src="{{ Storage::url($producto->imagen) }}" alt="">
                                 </div>
                                 <div class="ml-4">
-                                    <div class="text-sm text-center font-medium text-gray-900">
-                                        {{ $user->name }}
+                                    <div class="text-sm text-center text-gray-900">
+                                        {{ $producto->nombre }}
                                     </div>
 
                                 </div>
@@ -60,43 +61,37 @@ Listado de Usuarios
                         </td>
                         <td class="px-6 py-4">
                             <div class="text-sm text-center font-medium text-gray-900">
-                                {{ $user->email }}
+                                {{ \Carbon\Carbon::parse($producto->fecha_venta)->format('d - M - Y') }}
                             </div>
                         </td>
                         <td class="px-6 py-4">
                             <div class="text-sm text-center font-medium text-gray-900">
-                                {{ $user->direccion }}
+                                {{ $producto->precio }}&nbsp;€
                             </div>
                         </td>
                         <td class="px-6 py-4">
-
-                            <form action="{{ route('users.index') }}" method="POST">
-                                @csrf
-                                @method("PUT")
-                                <button type="submit" class="cursor-pointer px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-white
-                                    @if ($user->rol == 1) bg-red-500 @else bg-green-500 @endif">
-
-                                        @if ($user->rol == 1)
-                                            Normal
-                                        @else
-                                            Admin
-                                        @endif
-
-                                </button>
-                            </form>
-
+                            <div class="text-sm text-center font-medium text-gray-900">
+                                {{ $producto->cantidad }}
+                            </div>
                         </td>
+
+                        <td class="px-6 py-4">
+                            <div class="text-sm text-center font-medium text-gray-900">
+                                {{ $producto->tipo }}
+                            </div>
+                        </td>
+
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            <a href="{{ route('users.edit', $user) }}"
+                            <a href="{{ route('products.edit', $producto) }}"
                                 class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
                                 <i class="fas fa-edit"></i></a>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
 
-                            <form action="{{ route('users.destroy', $user) }}" method="POST">
+                            <form action="{{ route('products.destroy', $producto) }}" method="POST">
                                 @csrf
                                 @method("DELETE")
-                                <button onclick='return confirmar(this.form, "usuario de nombre {{ $user->name }}")' id="submitBtn" name="submitBtn"
+                                <button onclick="return confirmar(this.form)" id="submitBtn" name="submitBtn"
                                     class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                     <i class="fas fa-trash"></i></button>
                             </form>
@@ -106,8 +101,8 @@ Listado de Usuarios
             </tbody>
         </table>
     </x-estructuraTabla>
-    <div class="mt-2">
-        {{ $users->links() }}
+    <div class="mt-2 mb-10">
+        {{ $productos->links() }}
     </div>
 </div>
 @endsection

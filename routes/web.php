@@ -24,17 +24,28 @@ Route::get('/', function () {
     $piezasEnEscasez=Product::where([
         ['cantidad', '<=', 3],
         ['cantidad', '!=', 0]
-    ])->get()->random(8);
+    ])->get()->random(10);
 
     /* Carbon es una api que falicita las cosas con el formato DateTime */
-    $piezasNuevas=Product::where('cantidad', '!=', 0)->whereDate('fecha_venta', '<=', Carbon::now()->add(-10, 'day')->format('Y-m-d'))->orderBy('fecha_venta', 'desc')->get()->random(8);
+    $piezasNuevas=Product::where('cantidad', '!=', 0)->whereDate('fecha_venta', '<=', Carbon::now()->add(-10, 'day')->format('Y-m-d'))->orderBy('fecha_venta', 'desc')->get()->random(10);
 
-    $piezasInteresantes=Product::where('cantidad', '!=', 0)->take(100)->get()->random(8);
+    $piezasInteresantes=Product::where('cantidad', '!=', 0)->take(100)->get()->random(10);
 
     return view('dashboard', compact('piezasEnEscasez', 'piezasInteresantes', 'piezasNuevas'));
 })->name('index');
 
-Route::resource('products', ProductController::class); # Carga todas las rutas de Products
+Route::get('/tienda', function(){
+
+
+    return view('tienda.indexTienda');
+})->name('tienda');
+
+Route::get('/tienda2Mano', function(){
+
+    return view('tienda_2mano.index2Mano');
+})->name('tienda2Mano');
+
+Route::middleware(['role', 'verified'])->resource('products', ProductController::class); # Carga todas las rutas de Products
 Route::middleware(['auth:sanctum', 'verified'])->resource('userProducts', UserProductController::class); # Carga todas las rutas de userProducts
 
 /* Zona donde colocaremos los enlaces donde solo podrán acceder los admins ademas de tener que verificar la cuenta */

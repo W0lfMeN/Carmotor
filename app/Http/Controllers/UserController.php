@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -43,7 +44,33 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /* dd($request->all()); */
+        //Como hay una funcion creada por Livewire que ya hace toda la validacion, se envía el request a dicha funcion
+        $request->validate([
+            'name' => ['required', 'string'],
+            'apellidos'=>['required', 'string'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+
+            'calle' =>['required', 'string', 'max:255'],
+            'cp' =>['required', 'string', 'size:5'],
+            'poblacion' =>['required', 'string', 'max:255'],
+            'provincia' =>['required', 'string', 'max:255'],
+            'rol'=>['nullable'],
+
+            'password' => ['required', 'string','confirmed', 'min:8'],
+        ]);
+        /* dd($request->all()); */
+
+        User::create([
+            'name' =>$request['name']." ".$request['apellidos'],
+            'email' => $request['email'],
+            'direccion'=> $request['calle'].", ".$request['cp'].", ".$request['poblacion'].", ".$request['provincia'],
+            'rol'=>$request['rol'] ?? 1,
+            'password' => Hash::make($request['password']),
+        ]);
+
+        return redirect()->route('users.index')->with('mensaje', 'Usuario Creado');
+
     }
 
     /**
@@ -90,6 +117,35 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        dd($user);
+        $nombre=$user->name;
+        //Borramos el usuario indicado junto con la posible foto de perfil que tuviese
+        $user->deleteProfilePhoto();
+        $user->tokens->each->delete(); # se borra su token
+        $user->delete();
+
+        return redirect()->route('users.index')->with('mensaje', "Usuario $nombre borrado");
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function rol(User $user){
+
+        $rolActual=$user->rol;
+
+        dd($user);
+        if($rolActual==1)
+            $user->update(["rol",2]);
+        else{
+            $user->update(["rol",1]);
+        }
+
+        /* dd($user); */
+
+        return redirect()->route('users.index')->with('mensaje', "Se ha cambiado el rol del usuario correctamente");
     }
 }

@@ -47,6 +47,16 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         //Validamos el brand que nos llega y lo guardamos en caso de que sea correcto
+        $request->validate([
+            'nombre'=>['required', 'string', 'min:2', 'unique:brands,nombre'],
+            'descripcion' => ['nullable','string','min:5']
+        ]);
+
+        /* Si llega aqui es que está todo correcto */
+
+        Brand::create($request->all()); # Guardamos la marca creada
+
+        return redirect()->route('brands.index')->with('mensaje', 'Marca Creada');
 
     }
 
@@ -59,7 +69,7 @@ class BrandController extends Controller
     public function show(Brand $brand)
     {
         //Retornamos la vista del showBrand
-        return view('adminDirectory.brands.showBrand', compact('brand'));
+        // return view('adminDirectory.brands.showBrand', compact('brand'));
     }
 
     /**
@@ -83,7 +93,16 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //Validamos lo que llega del editBrand
+        //Validamos lo que llega del editBrand y lo guardamos en caso de que sea correcto
+        $request->validate([
+            'nombre'=>['required', 'string', 'min:2', 'unique:brands,nombre,'. $brand->id],
+            'descripcion' => ['nullable','string','min:5']
+        ]);
+
+        $brand->update($request->all());
+
+        //nos vamos a index
+        return redirect()->route('brands.index')->with('mensaje', 'Marca Editada correctamente');
 
     }
 
@@ -96,6 +115,10 @@ class BrandController extends Controller
     public function destroy(Brand $brand)
     {
         //Borramos el brand que se nos indique
+        $brand->delete();
+
+        //nos vamos a index
+        return redirect()->route('brands.index')->with('mensaje', 'Marca Borrada');
 
     }
 }
