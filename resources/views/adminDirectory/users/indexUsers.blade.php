@@ -13,7 +13,7 @@ Listado de Usuarios
     @endif
 
     <div class="my-4">
-        <a href="{{ route('users.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <a href="{{ route('users.create') }}" class="bg-blue-500 font-bold hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800 text-white">
             <i class="fas fa-plus"></i> Crear Usuario</a>
     </div>
     <x-estructuraTabla>
@@ -31,8 +31,8 @@ Listado de Usuarios
                     </th>
                     <th scope="col">@sortablelink('rol', 'Rol')</i>
                     </th>
-                    <th scope="col" colspan="2" class="px-6 py-3 text-center text-xs uppercase tracking-wider">
-                        Acciones
+                    <th scope="col" {{-- colspan="2" --}} class="px-6 py-3 text-center text-xs uppercase tracking-wider">
+                        Accion
                     </th>
                 </tr>
             </thead>
@@ -68,11 +68,20 @@ Listado de Usuarios
                                 {{ $user->direccion }}
                             </div>
                         </td>
-                        <td class="px-6 py-4">
+                        {{-- Rol --}}
+                        <td class="px-6 py-4 text-center">
 
-                            <form action="{{ route('users.index') }}" method="POST">
+                            <a href="{{ route('users.rol', $user) }}" class="cursor-pointer px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-white
+                                    @if ($user->rol == 1) bg-red-500 @else bg-green-500 @endif">
+
+                                        @if ($user->rol == 1)
+                                            Normal
+                                        @else
+                                            Admin
+                                        @endif
+                            </a>
+                            {{-- <form action="{{ route('users.rol', $user) }}" method="POST">
                                 @csrf
-                                @method("PUT")
                                 <button type="submit" class="cursor-pointer px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-white
                                     @if ($user->rol == 1) bg-red-500 @else bg-green-500 @endif">
 
@@ -83,15 +92,16 @@ Listado de Usuarios
                                         @endif
 
                                 </button>
-                            </form>
+                            </form> --}}
 
                         </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {{--  --}}
+                        {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             <a href="{{ route('users.edit', $user) }}"
                                 class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
                                 <i class="fas fa-edit"></i></a>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        </td> --}}
+                        <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
 
                             <form action="{{ route('users.destroy', $user) }}" method="POST">
                                 @csrf

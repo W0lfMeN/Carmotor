@@ -19,11 +19,18 @@ class DatabaseSeeder extends Seeder
     {
         Storage::deleteDirectory('carmotor'); /* Borra la carpeta raiz de las imagenes */
         Storage::deleteDirectory('profile-photos'); /* Borra la carpeta de las imagenes de los usuarios */
-        
+
         $this->crearCarpetas(); /* Funcion que crea las carpetas con cada una de las piezas */
         Storage::makeDirectory("carmotor/tienda_Usuarios"); /* Carpeta donde se guardaran los productos subidos por los usuarios. Aqui se guardaran por usuarios y no por tipo de pieza */
 
-        \App\Models\User::factory(20)->create(); /* Crea 20 usuarios */
+        \App\Models\User::factory(30)->create(); /* Crea 20 usuarios */
+
+        $this->call(BrandSeeder::class); /* Llamamos al brandseeder para crear las marcas */
+        $this->call(ProductSeeder::class); /* Llamamos al productseeder para crear los productos a la vez que se les asocia unas cuantas marcas */
+
+        \App\Models\UserProduct::factory(100)->create();
+
+
 
         /* Me creo un usuario para hacer pruebas */
         User::create([
@@ -37,11 +44,6 @@ class DatabaseSeeder extends Seeder
 
             'remember_token' => Str::random(10),
         ]);
-
-        $this->call(BrandSeeder::class); /* Llamamos al brandseeder para crear las marcas */
-        $this->call(ProductSeeder::class); /* Llamamos al productseeder para crear los productos a la vez que se les asocia unas cuantas marcas */
-
-        \App\Models\UserProduct::factory(30)->create();
 
     }
 

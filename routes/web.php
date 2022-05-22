@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProductController;
+use App\Mail\ContactoMailable;
 use App\Models\Product;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,21 +43,28 @@ Route::get('/tienda', function(){
     return view('tienda.indexTienda');
 })->name('tienda');
 
-Route::get('/tienda2Mano', function(){
+Route::middleware(['auth:sanctum', 'verified'])->get('/tienda2Mano', function(){
 
     return view('tienda_2mano.index2Mano');
 })->name('tienda2Mano');
 
-Route::middleware(['role', 'verified'])->resource('products', ProductController::class); # Carga todas las rutas de Products
-Route::middleware(['auth:sanctum', 'verified'])->resource('userProducts', UserProductController::class); # Carga todas las rutas de userProducts
+/* Envio de formulario */
+Route::get('/contacto', [ContactoController::class, 'pintarFormulario'])->name('contacto.pintar');
+Route::post('/contacto', [ContactoController::class, 'procesarFormulario'])->name('contacto.procesar');
+
 
 /* Zona donde colocaremos los enlaces donde solo podrán acceder los admins ademas de tener que verificar la cuenta */
+
+Route::middleware(['role', 'verified'])->resource('products', ProductController::class); # Carga todas las rutas de Products
+Route::middleware(['role', 'verified'])->resource('userProducts', UserProductController::class); # Carga todas las rutas de userProducts
+
 Route::middleware(['role', 'verified'])->resource('/admin/brands', BrandController::class); # Carga todas las rutas de Brand
+
 Route::middleware(['role', 'verified'])->resource('/admin/users', UserController::class); # Carga todas las rutas de Users
+Route::middleware(['role', 'verified'])->get('/admin/users/rol/{user}', [UserController::class, 'rol'])->name('users.rol'); #Llama al metodo para cambiar su rol
+
 Route::middleware(['role', 'verified'])->get('/admin', function () {
     return view('adminDirectory.index'); # Carga la vista del panel de administrador del admin
 })->name('admin');
 
-/* Puede que falte el controller de Users
-(Para que aparezca en una seccion de la administracion una tabla con los usuarios y poder darles derechos de admin o no,...)
-*/
+/*  */

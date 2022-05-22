@@ -1,10 +1,10 @@
 {{-- Footer personalizado --}}
 <footer class="p-4 bg-white sm:p-6 dark:bg-gray-800">
     <div class="sm:flex sm:items-center sm:justify-between">
-        <a href="{{route('index')}}" class="flex items-center mb-4 sm:mb-0">
+        <button class="flex items-center mb-4 border-0 outline-0 sm:mb-0 " id="btnTop">
             <img src="{{Storage::url('resources/Logo.jpeg')}}" class="mr-3 h-8" alt="Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CarMotor.es</span>
-        </a>
+        </button>
         <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
             <li>
                 <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
@@ -16,7 +16,7 @@
                 <a href="#" class="mr-4 hover:underline md:mr-6 ">Licensing</a>
             </li>
             <li>
-                <a href="#" class="hover:underline">Contact</a>
+                <a href="{{route('contacto.pintar')}}" class="hover:underline">Contactanos</a>
             </li>
         </ul>
     </div>

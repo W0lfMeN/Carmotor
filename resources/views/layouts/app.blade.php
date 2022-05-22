@@ -21,7 +21,12 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
+        <!-- Cargo mi js personal y llamo con onload a cargar los listeners que tengo definidos -->
         <script type="text/javascript" src="{{asset('js/javascriptPersonal.js')}}"></script>
+        <script>window.onload=listeners</script>
+
+
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -43,7 +48,9 @@
                 {{ $slot }}
             </main>
 
+
             <x-footer />
+
         </div>
 
         @stack('modals')

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\InformacionMailable;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -52,7 +54,7 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
 
             'calle' =>['required', 'string', 'max:255'],
-            'cp' =>['required', 'string', 'size:5'],
+            'cp' =>['required', 'digits:5'],
             'poblacion' =>['required', 'string', 'max:255'],
             'provincia' =>['required', 'string', 'max:255'],
             'rol'=>['nullable'],
@@ -117,14 +119,29 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        dd($user);
+        $contenidoDelCorreo=[
+            "mensaje"=>"Nos ponemos en contacto con usted para notificarle de que su cuenta ha sido suspendida debido a un incumplimiento de nuestras politicas.
+                        Lamentamos este incidente pero debemos de mantener una serie de normas para evitar problemas.",
+
+            "usuario"=>$user->name
+        ];
+
+        $correo = new InformacionMailable($contenidoDelCorreo);
+
+        try{
+            Mail::to($user->email)->send($correo);
+        }catch(\Exception $ex){
+
+        }
+
+
         $nombre=$user->name;
         //Borramos el usuario indicado junto con la posible foto de perfil que tuviese
         $user->deleteProfilePhoto();
         $user->tokens->each->delete(); # se borra su token
         $user->delete();
 
-        return redirect()->route('users.index')->with('mensaje', "Usuario $nombre borrado");
+        return redirect()->route('users.index')->with('mensaje', "Usuario $nombre borrado e informado");
     }
 
     /**
@@ -137,14 +154,14 @@ class UserController extends Controller
 
         $rolActual=$user->rol;
 
-        dd($user);
+        /* dd($user); */
         if($rolActual==1)
-            $user->update(["rol",2]);
+            $user->update(["rol"=>2]);
         else{
-            $user->update(["rol",1]);
+            $user->update(["rol"=>1]);
         }
 
-        /* dd($user); */
+       
 
         return redirect()->route('users.index')->with('mensaje', "Se ha cambiado el rol del usuario correctamente");
     }

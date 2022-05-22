@@ -23,14 +23,23 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.5/dist/flowbite.min.css" />
+
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/cssPersonal.css') }}">
+
+
 
     @livewireStyles
 
     <!-- Scripts -->
+    <script src="https://unpkg.com/flowbite@1.4.6/dist/datepicker.js"></script>
+    <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
+
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/javascriptPersonal.js') }}"></script>
+    <script>window.onload=listenersAdmin</script>
+
 </head>
 
 <body class="font-sans antialiased">
@@ -70,8 +79,7 @@
     @stack('modals')
 
     @livewireScripts
-
-    <script>
+    {{-- <script>
 
         /* Funcion que usa el sweet alert para preguntar si desea de verdad borrar el usuario o no */
         function confirmar(formulario, mensaje){
@@ -92,7 +100,18 @@
                 }
             })
         }
-    </script>
+
+        function error(mensaje){
+            Swal.fire(
+                'Error',
+                mensaje,
+                'error'
+            )
+        }
+
+
+
+    </script> --}}
 </body>
 
 </html>

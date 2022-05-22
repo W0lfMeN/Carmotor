@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
     {
         //Aqui creamos los productos y los relacionamos con algunas marcas (brands) y usuarios (users)
 
-        $productos=\App\Models\Product::factory(150)->create(); /* Crea 100 productos */
+        $productos=\App\Models\Product::factory(200)->create(); /* Crea 100 productos */
         $brandsIds=Brand::pluck('id')->toArray(); /* Con esto obtenemos todos los ids de las marcas en un array */
         $usersIds=User::pluck('id')->toArray(); /* Con esto obtenemos todos los ids de los usuarios en un array */
 

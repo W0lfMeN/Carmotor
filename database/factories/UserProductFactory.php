@@ -41,8 +41,8 @@ class UserProductFactory extends Factory
             'descripcion'=>$this->faker->text(100), /* Un texto con 100 caracteres */
 
             'imagen'=>"carmotor/tienda_Usuarios/$nombreUserAsignadoSinEspacios/$nombreSinEspacios/".$this->faker->picsum("public/storage/carmotor/tienda_Usuarios/$nombreUserAsignadoSinEspacios/$nombreSinEspacios", 640, 480, null, false),
-            'imagen1'=>"carmotor/tienda_Usuarios/$nombreUserAsignadoSinEspacios/$nombreSinEspacios/".$this->faker->boolean(50) ? "carmotor/".$this->faker->picsum("public/storage/carmotor/tienda_Usuarios/$nombreUserAsignadoSinEspacios/$nombreSinEspacios", 640, 480, null, false) : null,
-            'imagen2'=>"carmotor/tienda_Usuarios/$nombreUserAsignadoSinEspacios/$nombreSinEspacios/".$this->faker->boolean(50) ? "carmotor/".$this->faker->picsum("public/storage/carmotor/tienda_Usuarios/$nombreUserAsignadoSinEspacios/$nombreSinEspacios", 640, 480, null, false) : null,
+            'imagen1'=>$this->faker->boolean(50) ? "carmotor/tienda_Usuarios/$nombreUserAsignadoSinEspacios/$nombreSinEspacios/".$this->faker->picsum("public/storage/carmotor/tienda_Usuarios/$nombreUserAsignadoSinEspacios/$nombreSinEspacios", 640, 480, null, false) : null,
+            'imagen2'=>$this->faker->boolean(50) ? "carmotor/tienda_Usuarios/$nombreUserAsignadoSinEspacios/$nombreSinEspacios/".$this->faker->picsum("public/storage/carmotor/tienda_Usuarios/$nombreUserAsignadoSinEspacios/$nombreSinEspacios", 640, 480, null, false) : null,
             /* Las dos ultimas imagenes se ponen asi para que en algunos casos solo se llegue a crear 1 imagen, en otros 2 o 3 imagenes */
 
             'precio'=>$this->faker->randomFloat(2,10,9999), /* un float aleatorio entre 10 y 9999 con 2 decimales */
