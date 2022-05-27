@@ -1,5 +1,6 @@
 /* Aqui van mi reglas css personalizadas */
 
+
 @media(max-width: 639px){
     #botonCarrito{
         display: none;
@@ -7,6 +8,11 @@
     }
 
     #botonUser{
+        display: none;
+        visibility: hidden;
+    }
+
+    #botonListaDeseos{
         display: none;
         visibility: hidden;
     }

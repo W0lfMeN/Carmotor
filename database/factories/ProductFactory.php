@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
@@ -28,6 +29,19 @@ class ProductFactory extends Factory
 
         $this->faker->addProvider(new \Mmo\Faker\PicsumProvider($this->faker)); #Cambiamos el proveedor de imagenes ya que el anterior ha fallado
 
+        if($this->faker->boolean(50)){
+            $imagen1="carmotor/tienda/$tipoAleatorio/$nombreSinEspacios/".$this->faker->picsum("public/storage/carmotor/tienda/$tipoAleatorio/$nombreSinEspacios", 640, 480, null, false);
+        }else{
+            $imagen1=null;
+        }
+
+        if($this->faker->boolean(50) && $imagen1!=null){
+
+            $imagen2="carmotor/tienda/$tipoAleatorio/$nombreSinEspacios/".$this->faker->picsum("public/storage/carmotor/tienda/$tipoAleatorio/$nombreSinEspacios", 640, 480, null, false);
+        }else{
+            $imagen2=null;
+        }
+
         return [
             //rellenamos la tabla con datos de prueba
 
@@ -35,10 +49,10 @@ class ProductFactory extends Factory
             'descripcion'=>$this->faker->text(100), /* Un texto con 100 caracteres */
 
             'imagen'=>"carmotor/tienda/$tipoAleatorio/$nombreSinEspacios/".$this->faker->picsum("public/storage/carmotor/tienda/$tipoAleatorio/$nombreSinEspacios", 640, 480, null, false),
-            'imagen1'=>$this->faker->boolean(50) ? "carmotor/tienda/$tipoAleatorio/$nombreSinEspacios/".$this->faker->picsum("public/storage/carmotor/tienda/$tipoAleatorio/$nombreSinEspacios", 640, 480, null, false) : null,
-            'imagen2'=>$this->faker->boolean(50) ? "carmotor/tienda/$tipoAleatorio/$nombreSinEspacios/".$this->faker->picsum("public/storage/carmotor/tienda/$tipoAleatorio/$nombreSinEspacios", 640, 480, null, false) : null,
+            'imagen1'=>$imagen1,
+            'imagen2'=>$imagen2,
 
-
+            'slug'=>Str::slug($nombre, '-'),
             /* Las dos ultimas imagenes se ponen asi para que en algunos casos solo se llegue a crear 1 imagen, en otros 2 o 3 imagenes */
 
             'precio'=>$this->faker->randomFloat(2,10,9999), /* un float aleatorio entre 10 y 9999 con 2 decimales */
@@ -50,4 +64,6 @@ class ProductFactory extends Factory
         ];
         /* FACTORY COMPLETADO */
     }
+
+
 }

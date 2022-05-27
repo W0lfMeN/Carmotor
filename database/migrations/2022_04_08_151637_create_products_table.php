@@ -25,6 +25,11 @@ return new class extends Migration
             $table->string('imagen2')->nullable();
             $table->float('precio', 6,2); /* 6 cifras de las cuales 2 son decimales */
             /*  */
+
+            /* Campo para el SEO (Este campo lo usaremos en la url para el posicionamiento SEO) */
+            $table->string('slug')->nullable();
+            /*  */
+
             $table->integer('cantidad'); /* Cantidad de stock de este producto */
             $table->date('fecha_venta');
             $table->enum('tipo', ['Embrague', 'Transmision', 'Valvula', 'Freno', 'Rueda', 'Cambio', 'Pedal', 'Espejo', 'Motor', 'Turbo', 'Supercargador', 'Radiador', 'Amortiguador']);

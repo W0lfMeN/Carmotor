@@ -37,7 +37,7 @@
 
                 <div class="shrink-0 flex items-center">
                     <!-- Carrito -->
-                    <a href="#" id="botonCarrito" class="text-black font-bold text-lg rounded p-3 mt-2"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Carrito</a>
+                    <a href="#" id="botonCarrito" class="text-black text-md rounded p-3 mt-2"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Carrito</a>
                 </div>
 
                 @if (Route::has('login'))
@@ -46,6 +46,10 @@
                         @auth
                             <!-- Login -->
                             {{-- Cuando está logueado --}}
+                            <div class="shrink-0 flex items-center">
+                                <!-- Carrito -->
+                                <a href="{{route('tienda.deseos')}}" id="botonListaDeseos" class="text-black text-md rounded p-3 mt-2"><i class="fa-solid fa-heart"></i>&nbsp;Lista de deseos</a>
+                            </div>
 
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative" id="botonUser">
@@ -53,7 +57,7 @@
                                     <x-slot name="trigger">
                                         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                             <button id="botonUser"
-                                                class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-red-300 transition">
+                                                class="flex text-sm border-2 border-transparent rounded-full focus:outline-none {{-- focus:border-red-300 --}} transition">
                                                 &nbsp;&nbsp;<img class="h-9 w-9 rounded-full object-cover"
                                                     src="{{ Auth::user()->profile_photo_url }}"
                                                     alt="{{ Auth::user()->name }}" />&nbsp;
@@ -196,6 +200,13 @@
         @if (Route::has('login'))
             @auth
                 {{-- Cuando se está logueado --}}
+
+                <div>
+                    <x-jet-responsive-nav-link href="{{route('tienda.deseos')}}" class="text-black font-bold border-y border-gray-200" :active="request()->routeIs('tienda.deseos')">
+                        <p><i class="fa-solid fa-heart"></i>&nbsp;Lista de deseos</p>
+                    </x-jet-responsive-nav-link>
+                </div>
+
 
                 <!-- Responsive Settings Options -->
                 <div class="pt-4 pb-1 border-t border-gray-200">

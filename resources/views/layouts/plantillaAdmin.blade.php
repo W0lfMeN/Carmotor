@@ -25,6 +25,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.5/dist/flowbite.min.css" />
 
+    <link rel="icon" href="{{ url('storage/resources/Logo.jpeg') }}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/cssPersonal.css') }}">
 
@@ -49,7 +50,7 @@
         @livewire('navigation-menu')
 
         <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 text-red-500 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <div class="flex">
                     <a href="{{route('products.index')}}" class="font-semibold text-xl text-center text-gray-800 leading-tight flex mx-10">
                         {{ __('Productos') }}

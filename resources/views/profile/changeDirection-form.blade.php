@@ -11,7 +11,7 @@
 
     <x-slot name="form">
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="calle" value="{{ __('Street') }}" />
+            <x-jet-label for="calle" value="{{ __('Calle') }}" />
             <x-jet-input id="calle" type="text" class="mt-1 block w-full" wire:model.defer="state.calle" autocomplete="calle" aria-placeholder="Calle" placeholder="Calle, Nº" />
             <x-jet-input-error for="calle" class="mt-2" />
         </div>
@@ -23,9 +23,15 @@
         </div>
 
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="ciudad" value="{{ __('City') }}" />
-            <x-jet-input id="ciudad" type="text" class="mt-1 block w-full" wire:model.defer="state.ciudad" autocomplete="ciudad" aria-placeholder="Ciudad" placeholder="Ciudad"/>
-            <x-jet-input-error for="ciudad" class="mt-2" />
+            <x-jet-label for="poblacion" value="{{ __('Poblacion') }}" />
+            <x-jet-input id="poblacion" type="text" class="mt-1 block w-full" wire:model.defer="state.poblacion" autocomplete="poblacion" aria-placeholder="Poblacion" placeholder="Poblacion"/>
+            <x-jet-input-error for="poblacion" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="provincia" value="{{ __('Provincia') }}" />
+            <x-jet-input id="provincia" type="text" class="mt-1 block w-full" wire:model.defer="state.provincia" autocomplete="provincia" aria-placeholder="Provincia" placeholder="Provincia"/>
+            <x-jet-input-error for="provincia" class="mt-2" />
         </div>
 
 

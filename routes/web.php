@@ -3,13 +3,18 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TiendaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProductController;
 use App\Mail\ContactoMailable;
+use App\Models\Brand;
 use App\Models\Product;
+use App\Models\UserProduct;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,20 +42,29 @@ Route::get('/', function () {
     return view('dashboard', compact('piezasEnEscasez', 'piezasInteresantes', 'piezasNuevas'));
 })->name('index');
 
-Route::get('/tienda', function(){
+/* Vistas de la tienda principal */
+Route::get('/tienda', [TiendaController::class, 'tienda'])->name('tienda');
+Route::get('/tienda/{product:slug}', [TiendaController::class, 'tiendaProducto'])->name('tienda.producto');
+Route::middleware(['auth:sanctum', 'verified'])->get('/tienda/addDeseo/{product:slug}', [TiendaController::class, 'addDeseo'])->name('tienda.addDeseo');
+Route::middleware(['auth:sanctum', 'verified'])->get('/tienda/addCarrito/{product:slug}', [TiendaController::class, 'addCarrito'])->name('tienda.addCarrito');
+Route::middleware(['auth:sanctum', 'verified'])->get('/listaDeDeseos', [TiendaController::class, 'listaDeseos'])->name('tienda.deseos');
 
-
-    return view('tienda.indexTienda');
-})->name('tienda');
+/*  */
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/tienda2Mano', function(){
 
-    return view('tienda_2mano.index2Mano');
+    $marcas=Brand::orderBy('nombre', 'asc')->get();
+    $tipos=['Embrague', 'Transmision', 'Valvula', 'Freno', 'Rueda', 'Cambio', 'Pedal', 'Espejo', 'Motor', 'Turbo', 'Supercargador', 'Radiador', 'Amortiguador'];
+
+    $productosSegMano=UserProduct::whereDate('fecha_venta', '<=', Carbon::now()->add(-10, 'day')->format('Y-m-d'))->orderBy('fecha_venta', 'desc')->get();
+
+    return view('tienda_2mano.index2Mano', compact('productosSegMano'));
 })->name('tienda2Mano');
 
-/* Envio de formulario */
+/* Envio de formulario de contacto */
 Route::get('/contacto', [ContactoController::class, 'pintarFormulario'])->name('contacto.pintar');
 Route::post('/contacto', [ContactoController::class, 'procesarFormulario'])->name('contacto.procesar');
+/*  */
 
 
 /* Zona donde colocaremos los enlaces donde solo podrán acceder los admins ademas de tener que verificar la cuenta */

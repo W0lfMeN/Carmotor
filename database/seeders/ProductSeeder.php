@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
 
         $productos=\App\Models\Product::factory(200)->create(); /* Crea 100 productos */
         $brandsIds=Brand::pluck('id')->toArray(); /* Con esto obtenemos todos los ids de las marcas en un array */
-        $usersIds=User::pluck('id')->toArray(); /* Con esto obtenemos todos los ids de los usuarios en un array */
+        # $usersIds=User::pluck('id')->toArray(); /* Con esto obtenemos todos los ids de los usuarios en un array */
 
         /* Foreach que asigna marcas y usuarios asociados a cada producto creado de forma aleatoria */
         foreach($productos as $producto){
@@ -30,10 +30,10 @@ class ProductSeeder extends Seeder
             $producto->brands()->attach($marcas); /* Se los asigna al producto en concreto */
 
             /* ---------------------------------------------------------------- */
-            /* Ahora asociamos usuarios */
 
-            $usuarios=array_slice($usersIds, 0, random_int(1, count($usersIds))); /* Escoge unos cuantos ids aleatorios del array usersIds */
-            $producto->users()->attach($usuarios); /* Se los asigna al producto en concreto */
+            /* # Ahora asociamos usuarios
+            $usuarios=array_slice($usersIds, 0, random_int(1, count($usersIds))); # Escoge unos cuantos ids aleatorios del array usersIds
+            $producto->users()->attach($usuarios); # Se los asigna al producto en concreto */
 
         }
     }

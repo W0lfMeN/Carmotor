@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileAddressInformationForm extends Component
 {
@@ -32,10 +33,18 @@ class ProfileAddressInformationForm extends Component
      */
     public function updateProfileAddressInformation()
     {
+
         $this->resetErrorBag();
         $user = Auth::user();
 
-        $cadena=$this->state['calle'].", ".$this->state['cp'].", ".$this->state['ciudad'];
+        Validator::make($this->state, [
+            'calle' =>['required', 'string', 'max:255'],
+            'cp' =>['required', 'digits:5'],
+            'poblacion' =>['required', 'string', 'max:255'],
+            'provincia' =>['required', 'string', 'max:255'],
+        ])->validate();
+
+        $cadena=$this->state['calle'].", ".$this->state['cp'].", ".$this->state['poblacion'].", ".$this->state['provincia'];
 
         $user->direccion = $cadena;
 

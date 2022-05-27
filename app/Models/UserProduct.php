@@ -10,7 +10,7 @@ class UserProduct extends Model
 {
     use HasFactory;
     use Sortable;
-    protected $fillable=['nombre', 'descripcion', 'imagen', 'imagen1', 'imagen2', 'precio', 'kms', 'fecha_venta', 'tipo'];
+    protected $fillable=['nombre', 'descripcion', 'imagen', 'imagen1', 'imagen2', 'precio', 'kms', 'fecha_venta', 'tipo', 'slug'];
 
     /* Funciones */
 
@@ -18,6 +18,17 @@ class UserProduct extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
 
     //Metodos scopes
     public function scopeNombre($query, $v){

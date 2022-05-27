@@ -25,7 +25,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
 
             'calle' =>['required', 'string', 'max:255'],
-            'cp' =>['required', 'string', 'min:5', 'max:5'],
+            'cp' =>['required', 'digits:5'],
             'poblacion' =>['required', 'string', 'max:255'],
             'provincia' =>['required', 'string', 'max:255'],
 

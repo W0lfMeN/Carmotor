@@ -17,19 +17,30 @@
         {{-- Tailwind CDN --}}
         <script src="https://cdn.tailwindcss.com"></script>
 
+        {{-- Jquery --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        {{-- Sweet alert --}}
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <!-- Styles -->
+        <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.5/dist/flowbite.min.css" />
+
+        <link rel="icon" href="{{ url('storage/resources/Logo.jpeg') }}">
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         <link rel="stylesheet" href="{{asset('css/cssPersonal.css')}}">
 
         @livewireStyles
 
         <!-- Scripts -->
+        <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
+
         <script src="{{ mix('js/app.js') }}" defer></script>
         <!-- Cargo mi js personal y llamo con onload a cargar los listeners que tengo definidos -->
         <script type="text/javascript" src="{{asset('js/javascriptPersonal.js')}}"></script>
         <script>window.onload=listeners</script>
     </head>
-    <body class="font-sans antialiased" style="background-color: blanchedalmond">
+    <body class="font-sans antialiased">
         <x-jet-banner />
 
         <div class="min-h-screen">

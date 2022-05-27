@@ -5,6 +5,7 @@ Editando el producto de nombre "{{$product->nombre}}" con ID: {{$product->id}}
 @section('contenido')
 <form action="{{route('products.update', $product)}}" method="post" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
     <div class="py-4 px-2 w-3/4 mx-auto border-black border-2 rounded-lg">
 
         {{-- Nombre del producto --}}
@@ -32,7 +33,7 @@ Editando el producto de nombre "{{$product->nombre}}" con ID: {{$product->id}}
         <div class="grid xl:grid-cols-2 xl:gap-6 pt-4">
             {{-- Precio --}}
             <div class="relative z-0 w-full mb-6 group">
-                <input type="number" name="precio" id="precio" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="{{$product->precio}}" />
+                <input type="number" step="any" name="precio" id="precio" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " value="{{$product->precio}}" />
                 <label for="precio" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Precio (€)</label>
 
                 @error('precio')
@@ -130,15 +131,11 @@ Editando el producto de nombre "{{$product->nombre}}" con ID: {{$product->id}}
             </div>
 
             <div>
-                @isset($product->imagen1)
-                    <img src="{{Storage::url($product->imagen1)}}" class="bg-cover bg-center" id="img1">
-                @endisset
+                <img src="@isset($product->imagen1) {{Storage::url($product->imagen1)}} @endisset" class="bg-cover bg-center" id="img1">
             </div>
 
             <div>
-                @isset($product->imagen2)
-                    <img src="{{Storage::url($product->imagen2)}}" class="bg-cover bg-center" id="img2">
-                @endisset
+                <img src="@isset($product->imagen2) {{Storage::url($product->imagen2)}} @endisset" class="bg-cover bg-center" id="img2">
             </div>
             {{--  --}}
 

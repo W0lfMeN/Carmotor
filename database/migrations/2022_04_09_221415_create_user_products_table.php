@@ -23,6 +23,8 @@ return new class extends Migration
             $table->float('precio', 6,2);
             $table->integer('kms');
 
+            $table->string('slug')->nullable();
+
             /* Imagenes. 1 de ellas es obligatoria, las otras 2 opcionales */
             $table->string('imagen');
             $table->string('imagen1')->nullable();

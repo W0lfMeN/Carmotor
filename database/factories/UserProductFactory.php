@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserProduct>
@@ -30,6 +31,7 @@ class UserProductFactory extends Factory
          $userAsignado=User::all()->random(); /* Obtenemos un usuario aleatorio (esto nos devuelve un array asociativo con sus datos) */
          $nombreUserAsignadoSinEspacios=str_replace(" ","_",$userAsignado->name); /* Obtenemos el nombre y le quitamos los espacios en blanco*/
 
+
          /* Se crea un directorio para cada usuario donde dentro se guardaran los productos que tengan a la venta */
          Storage::makeDirectory("carmotor/tienda_Usuarios/$nombreUserAsignadoSinEspacios/$nombreSinEspacios");
 
@@ -49,7 +51,9 @@ class UserProductFactory extends Factory
             'fecha_venta'=>$this->faker->dateTimeBetween('-20 days', '+30 days'), /* Retorna una fecha aleatoria desde 20 dias antes a 30 dias despues desde la fecha de hoy */
             'kms'=>random_int(1000, 100000), /* Int aleatorio entre 1000 y 100000 */
             'tipo'=>$tipoAleatorio, //Selecciona un tipo aleatorio del array de tipos
-            'user_id'=>$userAsignado /* Obtenemos el id del usuario aleatorio */
+            'user_id'=>$userAsignado, /* Obtenemos el id del usuario aleatorio */
+
+            'slug'=>Str::slug($nombre, '-')
        ];
     }
 }

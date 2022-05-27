@@ -11,7 +11,7 @@
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                 @foreach ($piezasEnEscasez as $pieza)
                     {{--  --}}
-                    <div class="rounded overflow-hidden @if($loop->iteration/4 <=1) mb-5 @else mb-10 @endif shadow-lg hover:shadow-2xl transform transition duration-500 hover:scale-110 ease-in-out">
+                    <a href="{{route('tienda.producto', $pieza)}}" class="rounded overflow-hidden @if($loop->iteration/4 <=1) mb-5 @else mb-10 @endif shadow-lg hover:shadow-2xl transform transition duration-500 hover:scale-110 ease-in-out">
                         <img class="w-full" src="{{Storage::url($pieza->imagen)}}" alt="{{$pieza->nombre}}">
                         <div class="px-6 py-4">
                           <div class="font-bold text-xl mb-2">{{$pieza->nombre}}</div>
@@ -29,8 +29,7 @@
                             </div>
                         @endif
 
-
-                      </div>
+                    </a>
                     {{--  --}}
                 @endforeach
             </div>
@@ -44,7 +43,7 @@
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                 @foreach ($piezasNuevas as $pieza)
                     {{--  --}}
-                    <div class="rounded overflow-hidden @if($loop->iteration/4 <=1) mb-5 @else mb-10 @endif shadow-lg hover:shadow-2xl transform transition duration-500 hover:scale-110 ease-in-out">
+                    <a href="{{route('tienda.producto', $pieza)}}" class="rounded overflow-hidden @if($loop->iteration/4 <=1) mb-5 @else mb-10 @endif shadow-lg hover:shadow-2xl transform transition duration-500 hover:scale-110 ease-in-out">
                         <img class="w-full" src="{{Storage::url($pieza->imagen)}}" alt="{{$pieza->nombre}}">
                         <div class="px-6 py-4">
                           <div class="font-bold text-xl mb-2">{{$pieza->nombre}}</div>
@@ -64,7 +63,7 @@
                             </div>
                         @endif
 
-                      </div>
+                    </a>
                     {{--  --}}
                 @endforeach
             </div>
@@ -79,7 +78,7 @@
                 @foreach ($piezasInteresantes as $pieza)
                     {{--  --}}
                     {{-- Si la iteracion va  --}}
-                    <div class="rounded overflow-hidden @if($loop->iteration/4 <=1) mb-5 @else mb-10 @endif shadow-lg hover:shadow-2xl transform transition duration-500 hover:scale-110 ease-in-out">
+                    <a href="{{route('tienda.producto', $pieza)}}" class="rounded overflow-hidden @if($loop->iteration/4 <=1) mb-5 @else mb-10 @endif shadow-lg hover:shadow-2xl transform transition duration-500 hover:scale-110 ease-in-out">
                         <img class="w-full" src="{{Storage::url($pieza->imagen)}}" alt="{{$pieza->nombre}}">
                         <div class="px-6 py-4">
                           <div class="font-bold text-xl mb-2">{{$pieza->nombre}}</div>
@@ -96,7 +95,7 @@
                             </div>
                         @endif
 
-                      </div>
+                    </a>
                     {{--  --}}
                 @endforeach
             </div>
