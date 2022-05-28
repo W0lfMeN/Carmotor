@@ -43,7 +43,7 @@
     <body class="font-sans antialiased">
         <x-jet-banner />
 
-        <div class="min-h-screen">
+        <div class="min-h-full relative">
             @livewire('navigation-menu')
 
             @hasSection('cabecera')
@@ -55,6 +55,9 @@
             @endif
 
             <!-- Page Content -->
+            @hasSection('tituloBody')
+            <div class="text-center mt-4 text-2xl text-gray-800">@yield('tituloBody')</div>
+            @endif
             <main>
                 @yield('contenido')
             </main>

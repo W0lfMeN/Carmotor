@@ -21,26 +21,27 @@ class DatabaseSeeder extends Seeder
         Storage::deleteDirectory('profile-photos'); /* Borra la carpeta de las imagenes de los usuarios */
 
         $this->crearCarpetas(); /* Funcion que crea las carpetas con cada una de las piezas */
-        Storage::makeDirectory("carmotor/tienda_Usuarios"); /* Carpeta donde se guardaran los productos subidos por los usuarios. Aqui se guardaran por usuarios y no por tipo de pieza */
+        /* Storage::makeDirectory("carmotor/tienda_Usuarios"); */ /* Carpeta donde se guardaran los productos subidos por los usuarios. Aqui se guardaran por usuarios y no por tipo de pieza */
 
         \App\Models\User::factory(30)->create(); /* Crea 20 usuarios */
 
         $this->call(BrandSeeder::class); /* Llamamos al brandseeder para crear las marcas */
         $this->call(ProductSeeder::class); /* Llamamos al productseeder para crear los productos a la vez que se les asocia unas cuantas marcas */
 
-        \App\Models\UserProduct::factory(100)->create();
+        /* \App\Models\UserProduct::factory(100)->create(); */
 
 
 
         /* Me creo un usuario para hacer pruebas */
         User::create([
-            'name' => "Carlos admin",
+            'name' => "Carlos",
+            'apellidos'=>"admin",
             'email' => "carlosjmsanchez@gmail.com",
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
 
             'rol'=>2, /* 1 = Usuario normal || 2 = Usuario Admin */
-            'direccion'=>"hola", /* Genera una direccion aleatoria */
+            'direccion'=>"Calle rio jucar Nº32, 04230, almeria, almeria", /* Genera una direccion aleatoria */
 
             'remember_token' => Str::random(10),
         ]);

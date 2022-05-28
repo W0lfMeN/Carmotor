@@ -18,9 +18,9 @@
 
                     @auth
                         {{-- Aqui van las opciones en caso de que haya un inicio de sesion cualquera --}}
-                        <x-jet-nav-link href="{{ route('tienda2Mano') }}" :active="request()->routeIs('tienda2Mano')">
+                        {{-- <x-jet-nav-link href="{{ route('tienda2Mano') }}" :active="request()->routeIs('tienda2Mano')">
                             {{ __('Tienda de Segunda mano') }}
-                        </x-jet-nav-link>
+                        </x-jet-nav-link> --}}
 
                         {{-- Aqui van las opciones en caso de que el usuario sea un admin (rol=2) --}}
                         @if (Auth::user()->rol == 2)
@@ -117,7 +117,7 @@
                                 <x-jet-dropdown align="right" width="48">
                                     <x-slot name="trigger">
                                         <button id="botonUser"
-                                            class="flex pt-2 text-xl border-2 border-transparent rounded-lg focus:outline-none focus:border-red-300 transition">
+                                            class="flex pt-2 text-xl border-2 border-transparent rounded-lg focus:outline-none {{-- focus:border-red-300 --}} transition">
                                             &nbsp;<i class="fa-solid fa-user"></i>&nbsp;&nbsp;<i
                                                 class="fa-solid fa-caret-down"></i>&nbsp;
                                         </button>
@@ -174,9 +174,9 @@
 
             @auth
                 {{-- Aqui van las opciones en caso de que haya una sesion cualquiera iniciada --}}
-                <x-jet-responsive-nav-link href="{{ route('tienda2Mano') }}" :active="request()->routeIs('tienda2Mano')">
+                {{-- <x-jet-responsive-nav-link href="{{ route('tienda2Mano') }}" :active="request()->routeIs('tienda2Mano')">
                     {{ __('Tienda de Segunda Mano') }}
-                </x-jet-responsive-nav-link>
+                </x-jet-responsive-nav-link> --}}
 
                 {{-- Aqui van las opciones en caso de que el usuario sea un admin (rol=2) --}}
                 @if (Auth::user()->rol == 2)

@@ -64,7 +64,8 @@ class UserController extends Controller
         /* dd($request->all()); */
 
         User::create([
-            'name' =>$request['name']." ".$request['apellidos'],
+            'name' =>$request['name'],
+            'apellidos'=>$request['apellidos'],
             'email' => $request['email'],
             'direccion'=> $request['calle'].", ".$request['cp'].", ".$request['poblacion'].", ".$request['provincia'],
             'rol'=>$request['rol'] ?? 1,
@@ -161,7 +162,7 @@ class UserController extends Controller
             $user->update(["rol"=>1]);
         }
 
-       
+
 
         return redirect()->route('users.index')->with('mensaje', "Se ha cambiado el rol del usuario correctamente");
     }

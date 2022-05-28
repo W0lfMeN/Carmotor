@@ -95,8 +95,8 @@
 
                     <div class="grid grid-cols-12 gap-4">
 
-                        <a href="{{route('tienda.addDeseo', $product)}}" class="col-span-12 md:col-span-6 md:pt-6 lg:col-span-1 lg:pt-3 text-xl border-2 rounded mt-3 text-center text-gray-500 transition ease-in-out duration-700 @if ($product->users->contains(Auth::user()->id)) hover:bg-red-500 focus:ring-red-500 @else hover:bg-green-500 focus:ring-green-500 @endif hover:text-white focus:ring-2 focus:outline-none">
-                            @if ($product->users->contains(Auth::user()->id))
+                        <a href="{{route('tienda.addDeseo', $product)}}" class="col-span-12 md:col-span-6 md:pt-6 lg:col-span-1 lg:pt-3 text-xl border-2 rounded mt-3 text-center text-gray-500 transition ease-in-out duration-700 @if (Auth::check() && $product->users->contains(Auth::user()->id)) hover:bg-red-500 focus:ring-red-500 @else hover:bg-green-500 focus:ring-green-500 @endif hover:text-white focus:ring-2 focus:outline-none">
+                            @if (Auth::check() && $product->users->contains(Auth::user()->id))
                                 <i class="fa-solid fa-heart-circle-check"></i>
                             @else
                                 <i class="fa-solid fa-heart"></i>
@@ -108,7 +108,7 @@
                             <i class="fa-solid fa-cart-plus"></i> Añadir al carrito
                         </a>
 
-                        <a href="{{route('tienda.addCarrito', $product)}}" class="col-span-12 md:col-span-12 lg:col-span-6 text-xl border-2 border-blue-300 rounded p-3 mt-3 text-center bg-blue-500 transition ease-in-out duration-500 hover:bg-blue-700 focus:ring-2 focus:outline-none focus:ring-blue-300 text-white">
+                        <a href="{{route('tienda.comprarProducto', $product)}}" class="col-span-12 md:col-span-12 lg:col-span-6 text-xl border-2 border-blue-300 rounded p-3 mt-3 text-center bg-blue-500 transition ease-in-out duration-500 hover:bg-blue-700 focus:ring-2 focus:outline-none focus:ring-blue-300 text-white">
                             Comprar
                         </a>
 

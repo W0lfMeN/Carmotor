@@ -59,12 +59,16 @@
                         class="font-semibold text-xl text-gray-800 leading-tight flex mx-10">
                         {{ __('Marcas') }}
                     </a>
-                    <a href="{{route('userProducts.index')}}" class="font-semibold text-xl text-gray-800 leading-tight flex mx-10">
+                    {{-- <a href="{{route('userProducts.index')}}" class="font-semibold text-xl text-gray-800 leading-tight flex mx-10">
                         {{ __('Tienda de segunda mano') }}
-                    </a>
+                    </a> --}}
                     <a href="{{ route('users.index') }}"
                         class="font-semibold text-xl text-gray-800 leading-tight flex mx-10">
                         {{ __('Usuarios') }}
+                    </a>
+                    <a href="{{ route('facturas.index') }}"
+                        class="font-semibold text-xl text-gray-800 leading-tight flex mx-10">
+                        {{ __('Facturas') }}
                     </a>
                 </div>
             </div>
