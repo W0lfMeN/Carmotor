@@ -48,7 +48,9 @@
                             {{-- Cuando está logueado --}}
                             <div class="shrink-0 flex items-center">
                                 <!-- Carrito -->
-                                <a href="{{route('tienda.deseos')}}" id="botonListaDeseos" class="text-black text-md rounded p-3 mt-2"><i class="fa-solid fa-heart"></i>&nbsp;Lista de deseos</a>
+                                <a href="{{route('tienda.deseos')}}" id="botonListaDeseos" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lista de deseos"
+                                    class="text-black text-md rounded p-3 mt-2"><i class="fa-solid fa-heart"></i>
+                                        @if (Auth::user()->products->count()!=0) <span class="inline-block mb-3 w-2 h-2 bg-red-600 rounded-full"></span>@endif</a>
                             </div>
 
                             <!-- Settings Dropdown -->

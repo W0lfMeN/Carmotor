@@ -49,3 +49,4 @@ class Product extends Model
         return $query->where('tipo' , $v);
     }
 }
+

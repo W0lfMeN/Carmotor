@@ -13,7 +13,7 @@ Listado de facturas
     @endif
 
     <div class="my-4">
-        <a href="{{ route('facturas.exportar') }}" class="bg-green-500 font-bold hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-800 text-white">
+        <a href="{{ route('facturas.csv') }}" class="bg-green-500 font-bold hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-800 text-white">
             <i class="fa-solid fa-file-export"></i> Exportar tabla a CSV</a>
     </div>
 
@@ -21,7 +21,7 @@ Listado de facturas
         <div class="flex my-4">
 
                 <div class="w-11/12">
-                    <input type="search" name="codigo" placeholder="Buscar por ID" value="{{$request->codigo}}"
+                    <input type="search" name="codigo" placeholder="Buscar por Codigo" value="{{$request->codigo}}"
                         class="py-2 px-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full  sm:text-sm border-gray-300 rounded-md" />
                 </div>
 

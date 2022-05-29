@@ -3,7 +3,7 @@
 Listado de Usuarios
 @endsection
 @section('contenido')
-<div class="w-3/4 mx-auto px-2 mt-2">
+<div class="w-11/12 mx-auto px-2 mt-2">
 
     {{-- Alerta de informacion de lo que sea que se haya hecho --}}
     @if (session('mensaje'))

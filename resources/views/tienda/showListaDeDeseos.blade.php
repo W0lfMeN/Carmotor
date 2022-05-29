@@ -27,7 +27,7 @@ Lista de deseos
                 <hr>
                 <div class="grid grid-cols-12 gap-4 lg:mb-5">
 
-                    <a href="{{route('tienda.addDeseo', $producto)}}" class="col-span-12 md:col-span-6  lg:col-span-3 lg:pt-3 text-xl border-2 rounded mt-3 text-center text-gray-500 transition ease-in-out duration-700 hover:bg-red-500 hover:text-white focus:ring-2 focus:outline-none focus:ring-red-500">
+                    <a href="{{route('tienda.addDeseo', $producto)}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Retirar de la lista de deseos" class="col-span-12 md:col-span-6  lg:col-span-3 lg:pt-3 text-xl border-2 rounded mt-3 text-center text-gray-500 transition ease-in-out duration-700 hover:bg-red-500 hover:text-white focus:ring-2 focus:outline-none focus:ring-red-500">
                         @if ($producto->users->contains(Auth::user()->id))
                             <i class="fa-solid fa-heart-circle-minus"></i>
                         @else
@@ -36,11 +36,11 @@ Lista de deseos
 
                     </a>
 
-                    <a href="{{route('tienda.comprarProducto', $producto)}}" class="col-span-12 md:col-span-6  lg:col-span-3 lg:pt-3 text-xl border-2 rounded mt-3 text-center text-gray-500 transition ease-in-out duration-700 hover:bg-green-500 hover:text-white focus:ring-2 focus:outline-none focus:ring-green-500">
+                    <a href="{{route('tienda.comprarProducto', $producto)}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Comprar Producto" class="col-span-12 md:col-span-6  lg:col-span-3 lg:pt-3 text-xl border-2 rounded mt-3 text-center text-gray-500 transition ease-in-out duration-700 hover:bg-green-500 hover:text-white focus:ring-2 focus:outline-none focus:ring-green-500">
                         <i class="fa-solid fa-credit-card"></i>
                     </a>
 
-                    <a href="{{route('tienda.producto', $producto)}}" class="col-span-12 md:col-span-12 lg:col-span-6 text-lg border-2 border-blue-300 rounded p-3 mt-3 text-center bg-blue-500 transition ease-in-out duration-500 hover:bg-blue-700 focus:ring-2 focus:outline-none focus:ring-blue-300 text-white">
+                    <a href="{{route('tienda.producto', $producto)}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ver el producto" class="col-span-12 md:col-span-12 lg:col-span-6 text-lg border-2 border-blue-300 rounded p-3 mt-3 text-center bg-blue-500 transition ease-in-out duration-500 hover:bg-blue-700 focus:ring-2 focus:outline-none focus:ring-blue-300 text-white">
                         Visualizar
                     </a>
 

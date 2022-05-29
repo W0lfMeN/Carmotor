@@ -36,7 +36,6 @@ class ProductFactory extends Factory
         }
 
         if($this->faker->boolean(50) && $imagen1!=null){
-
             $imagen2="carmotor/tienda/$tipoAleatorio/$nombreSinEspacios/".$this->faker->picsum("public/storage/carmotor/tienda/$tipoAleatorio/$nombreSinEspacios", 640, 480, null, false);
         }else{
             $imagen2=null;
@@ -49,18 +48,17 @@ class ProductFactory extends Factory
             'descripcion'=>$this->faker->text(100), /* Un texto con 100 caracteres */
 
             'imagen'=>"carmotor/tienda/$tipoAleatorio/$nombreSinEspacios/".$this->faker->picsum("public/storage/carmotor/tienda/$tipoAleatorio/$nombreSinEspacios", 640, 480, null, false),
+            /* Las dos ultimas imagenes se ponen asi para que en algunos casos solo se llegue a crear 1 imagen, en otros 2 o 3 imagenes */
             'imagen1'=>$imagen1,
             'imagen2'=>$imagen2,
 
             'slug'=>Str::slug($nombre, '-'),
-            /* Las dos ultimas imagenes se ponen asi para que en algunos casos solo se llegue a crear 1 imagen, en otros 2 o 3 imagenes */
 
             'precio'=>$this->faker->randomFloat(2,10,9999), /* un float aleatorio entre 10 y 9999 con 2 decimales */
             'cantidad'=>random_int(0,10), /* Si es 0 quiere decir que no hay stock */
 
             'fecha_venta'=>$this->faker->dateTimeBetween('-20 days', '+30 days'), /* Retorna una fecha aleatoria desde 20 dias antes a 30 dias despues desde la fecha de hoy */
             'tipo'=>$tipoAleatorio, //Selecciona un tipo aleatorio del array anterior
-
         ];
         /* FACTORY COMPLETADO */
     }

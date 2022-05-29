@@ -45,14 +45,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/listaDeDeseos', [TiendaCo
 Route::get('/comprarProducto/{product}', [TiendaController::class, 'comprarProducto'])->name('tienda.comprarProducto');
 Route::post('/comprarProducto/{product}', [TiendaController::class, 'procesarCompra'])->name('tienda.procesarProducto');
 
-
-
-
 /* Envio de formulario de contacto */
 Route::get('/contacto', [ContactoController::class, 'pintarFormulario'])->name('contacto.pintar');
 Route::post('/contacto', [ContactoController::class, 'procesarFormulario'])->name('contacto.procesar');
 /*  */
-
 
 /* Zona donde colocaremos los enlaces donde solo podrán acceder los admins ademas de tener que verificar la cuenta */
 
@@ -61,7 +57,7 @@ Route::middleware(['role', 'verified'])->resource('products', ProductController:
 
 Route::middleware(['role', 'verified'])->get('/facturas', [FacturaController::class, 'index'])->name('facturas.index');
 Route::middleware(['role', 'verified'])->get('/facturas/{factura}', [FacturaController::class, 'show'])->name('facturas.show');
-Route::middleware(['role', 'verified'])->get('/facturas/csv', [FacturaController::class, 'exportarCsv'])->name('facturas.exportar');
+Route::middleware(['role', 'verified'])->get('/facturasCsv', [FacturaController::class, 'exportarCsv'])->name('facturas.csv');
 
 Route::middleware(['role', 'verified'])->resource('/admin/brands', BrandController::class); # Carga todas las rutas de Brand
 

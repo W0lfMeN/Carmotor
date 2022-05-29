@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Factura;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Response as csv;
 
 class FacturaController extends Controller
 {
@@ -36,21 +38,25 @@ class FacturaController extends Controller
     public function show(Factura $factura)
     {
         //
-        return view('adminDirectory.facturas.showFacturas', compact('factura'));
+        # return view('adminDirectory.facturas.showFacturas', compact('factura'));
     }
 
     public function exportarCsv(){
-        dd("hola");
+
         $table = Factura::all();
         $filename = "Facturas.csv";
         $handle = fopen($filename, 'w+');
-        fputcsv($handle, array('id', 'codigo', 'user_nombre', 'product_id', 'direccion', 'precio',  'created_at', 'productos'));
+        fputcsv($handle, array('ID', 'CODIGO', 'USER_NOMBRE', 'PRODUCT_ID', 'DIRECCION', 'PRECIO',  'FECHA DE FACTURACION', 'PEDIDO'));
 
         foreach($table as $row) {
+
+            /* Parseo la fecha con Carbon */
+            $row['created_at']=Carbon::parse($row['created_at'])->format('d-m-Y H:i:s');
+
             fputcsv($handle,array(
                 $row['id'], $row['codigo'], $row['user_nombre'],
                 $row['product_id'],$row['direccion'],$row['precio'],
-                $row['created_at'], $row['productos']
+                $row['created_at'], $row['pedido']
                 )
             );
         }
@@ -61,8 +67,7 @@ class FacturaController extends Controller
             'Content-Type' => 'text/csv',
         );
 
-        /* return Response::download($filename, 'Facturas.csv', $headers); */
+        return csv::download($filename, 'Facturas.csv', $headers);
 
-        return redirect()->route('facturas.index')->with("mensaje", "Tabla exportada correctamente");
     }
 }
