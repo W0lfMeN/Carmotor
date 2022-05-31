@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\FacturaSimpleMailable;
 use App\Models\Brand;
 use App\Models\Factura;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class TiendaController extends Controller
 {
@@ -52,14 +54,14 @@ class TiendaController extends Controller
 
         # primero debemos actualizar el producto y restarle 1 a la cantidad que hay disponible
         # Esto es lo que se hace a nivel empresarial para evitar que dos personas estén en el proceso de facturacion de un producto con 1 de stock
-        /* $cantidadDelProducto=$product['cantidad']-1;
-        $product->update(['cantidad'=>$cantidadDelProducto]); */
+        $cantidadDelProducto=$product['cantidad']-1;
+        $product->update(['cantidad'=>$cantidadDelProducto]);
 
         if(Auth::check()){
             /* Si entra es que hay alguien logueado. separamos la direccion */
             $direccion=explode(',', Auth::user()->direccion);
-            
-        }
+        }else
+            $direccion=null;
 
         /* dd($direccion); */
 
@@ -91,8 +93,17 @@ class TiendaController extends Controller
             "pedido"=>$product->nombre
         ]);
 
-        dd($factura['created_at']);
+        //si paso de aquí la validación ha ido bien
+        $correo = new FacturaSimpleMailable($factura);
 
+        try{
+            Mail::to('soporte@carmotor.es')->send($correo);
+        }catch(\Exception $ex){
+            dd($ex);
+            return redirect()->route('index')->with('correo', "No se pudo enviar el correo");
+        }
+
+        return redirect()->route('index')->with('correo', "Compra realizada, consulte su correo electronico");
     }
 
 

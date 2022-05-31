@@ -1,5 +1,10 @@
 <x-app-layout>
 
+    {{-- Alerta de informacion de lo que sea que se haya hecho --}}
+    @if (session('correo'))
+        <script>exito("{{session('correo')}}")</script>
+    @endif
+
     <div class="py-10">
         <div class="sm:px-6 md:mx-24 lg:px-8 lg:mx-48">
             {{-- Seccion de productos con bajo stock --}}
@@ -54,9 +59,9 @@
                         <div class="px-2 mt-2 font-bold items-center">
                             {{$pieza->tipo}}
                         </div>
-                        <div class="px-2 mt-2 font-bold items-center">
+                       {{--  <div class="px-2 mt-2 font-bold items-center">
                             Fecha de venta: {{date('d-m-Y', strtotime($pieza->fecha_venta))}}
-                        </div>
+                        </div> --}}
                         @if ($pieza->cantidad <= 3)
                             <div class="px-2 my-2 font-bold text-red-800 items-center">
                                 <h5>Solo quedan {{$pieza->cantidad}} en stock!!</h5>

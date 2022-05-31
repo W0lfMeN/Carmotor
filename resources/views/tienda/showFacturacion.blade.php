@@ -51,7 +51,7 @@ Rellene los datos de envio
             <div class="grid xl:grid-cols-2 xl:gap-6 pt-4">
                 {{-- Calle --}}
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="text" name="calle" id="calle" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @isset($direccion) value="{{$direccion[0]}}" readonly  @endisset  />
+                    <input type="text" name="calle" id="calle" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if($direccion!=null) value="{{$direccion[0]}}" readonly  @endif  />
                     <label for="calle" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Calle, Nº</label>
 
                     @error('calle')
@@ -61,7 +61,7 @@ Rellene los datos de envio
                 {{--  --}}
                 {{-- Codigo postal --}}
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="number" name="cp" id="cp" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @isset($direccion) value={{$direccion[1]}} readonly  @endisset />
+                    <input type="number" name="cp" id="cp" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if($direccion!=null) value={{$direccion[1]}} readonly  @endif />
                     <label for="cp" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Codigo Postal (CP)</label>
 
                     @error('cp')
@@ -71,7 +71,7 @@ Rellene los datos de envio
                 {{--  --}}
                 {{-- Poblacion --}}
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="text" name="poblacion" id="poblacion" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @isset($direccion) value="{{$direccion[2]}}" readonly  @endisset />
+                    <input type="text" name="poblacion" id="poblacion" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if($direccion!=null) value="{{$direccion[2]}}" readonly  @endif />
                     <label for="poblacion" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Poblacion</label>
 
                     @error('poblacion')
@@ -81,7 +81,7 @@ Rellene los datos de envio
                 {{--  --}}
                 {{-- Provincia --}}
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="text" name="provincia" id="provincia" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @isset($direccion) value="{{$direccion[3]}}" readonly  @endisset />
+                    <input type="text" name="provincia" id="provincia" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if($direccion!=null) value="{{$direccion[3]}}" readonly  @endif />
                     <label for="provincia" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Provincia</label>
 
                     @error('provincia')

@@ -49,6 +49,14 @@ function error(mensaje){
     )
 }
 
+function exito(mensaje){
+    Swal.fire({
+        icon: 'success',
+        title: mensaje,
+        confirmButtonText: 'Cerrar'
+      })
+}
+
 function cambiarImagen(event){
     /* Averiguamos que boton se ha pulsado */
 

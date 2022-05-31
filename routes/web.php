@@ -29,7 +29,7 @@ Route::get('/', function () {
     ])->get()->random(10);
 
     /* Carbon es una api que falicita las cosas con el formato DateTime */
-    $piezasNuevas=Product::where('cantidad', '!=', 0)->whereDate('fecha_venta', '<=', Carbon::now()->add(-10, 'day')->format('Y-m-d'))->orderBy('fecha_venta', 'desc')->get()->random(10);
+    $piezasNuevas=Product::where('cantidad', '!=', 0)->whereDate('fecha_venta', '<=', Carbon::now()->add(-10, 'day')->format('Y-m-d'))->orderBy('fecha_venta', 'asc')->take(10)->get();
 
     $piezasInteresantes=Product::where('cantidad', '!=', 0)->take(100)->get()->random(10);
 
