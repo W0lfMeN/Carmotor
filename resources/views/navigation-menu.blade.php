@@ -35,17 +35,21 @@
 
             <div class="flex">
 
-                <div class="shrink-0 flex items-center">
-                    <!-- Carrito -->
-                    <a href="#" id="botonCarrito" class="text-black text-md rounded p-3 mt-2"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Carrito</a>
-                </div>
-
                 @if (Route::has('login'))
                     <div class="shrink-0 flex items-center">
 
                         @auth
                             <!-- Login -->
                             {{-- Cuando está logueado --}}
+
+                            <div class="shrink-0 flex items-center">
+                                <!-- Carrito -->
+                                <a href="{{route('tienda.carrito')}}" id="botonCarrito" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Carrito de compra" class="text-black text-md rounded p-3 mt-2"><i class="fa-solid fa-cart-shopping"></i>
+                                    @if (Cart::session(Auth::user()->id)->getTotalQuantity()!=0)
+                                    <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-red-600 rounded-full">{{Cart::session(Auth::user()->id)->getTotalQuantity()}}</span>
+                                    @endif</a>
+                            </div>
+
                             <div class="shrink-0 flex items-center">
                                 <!-- Carrito -->
                                 <a href="{{route('tienda.deseos')}}" id="botonListaDeseos" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lista de deseos"

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\FacturaCarritoMailable;
 use App\Mail\FacturaSimpleMailable;
 use App\Models\Brand;
 use App\Models\Factura;
@@ -46,7 +47,12 @@ class TiendaController extends Controller
 
     /* Funcion que muestra la lista de deseos del usuario */
     public function listaDeseos(){
-        return view('tienda.showListaDeDeseos',);
+        return view('tienda.showListaDeDeseos');
+    }
+
+    /* Funcion que muestra el carrito del usuario */
+    public function carrito(){
+        return view('tienda.showCarrito');
     }
 
     /* Funcion que mostrará la ventana de facturacion para el producto seleccionado */
@@ -54,8 +60,8 @@ class TiendaController extends Controller
 
         # primero debemos actualizar el producto y restarle 1 a la cantidad que hay disponible
         # Esto es lo que se hace a nivel empresarial para evitar que dos personas estén en el proceso de facturacion de un producto con 1 de stock
-        $cantidadDelProducto=$product['cantidad']-1;
-        $product->update(['cantidad'=>$cantidadDelProducto]);
+        /* $cantidadDelProducto=$product['cantidad']-1;
+        $product->update(['cantidad'=>$cantidadDelProducto]); */
 
         if(Auth::check()){
             /* Si entra es que hay alguien logueado. separamos la direccion */
@@ -65,8 +71,20 @@ class TiendaController extends Controller
 
         /* dd($direccion); */
 
-        return view('tienda.showFacturacion', compact('product', 'direccion'));
+        return view('tienda.showFacturacionSimple', compact('product', 'direccion'));
     }
+
+    public function comprarCarrito(){
+
+        if(Auth::check()){
+            /* Si entra es que hay alguien logueado. separamos la direccion */
+            $direccion=explode(',', Auth::user()->direccion);
+        }else
+            $direccion=null;
+
+        return view('tienda.showFacturacionCarrito', compact('direccion'));
+    }
+
 
     public function procesarCompra(Request $request, Product $product){
         $request->validate([
@@ -106,6 +124,55 @@ class TiendaController extends Controller
         return redirect()->route('index')->with('correo', "Compra realizada, consulte su correo electronico");
     }
 
+    public function procesarCarrito(Request $request){
+
+        $request->validate([
+            'name' => ['required', 'string'],
+            'apellidos'=>['required', 'string'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+
+            'calle' =>['required', 'string', 'max:255'],
+            'cp' =>['required', 'digits:5'],
+            'poblacion' =>['required', 'string', 'max:255'],
+            'provincia' =>['required', 'string', 'max:255'],
+        ]);
+
+        $arrayIds=array_keys(\Cart::session(Auth::user()->id)->getContent()->toArray()); #Tenemos los ids en un array
+        $cadenaIds=implode(",",$arrayIds); # Tenemos los ids en una cadena
+
+        $arrayProductos=array_values(\Cart::session(Auth::user()->id)->getContent()->toArray()); #Tenemos los ids en un array
+        $cadenaProductos="";
+        foreach($arrayProductos as $producto){
+            $cadenaProductos=$cadenaProductos.", ".$producto['name'];
+        }
+        $cadenaProductos=substr($cadenaProductos,1); #Quitamos la coma del principio y Tenemos los nombres en una cadena
+
+
+        $factura=Factura::create([
+            "codigo"=>Carbon::now()->timestamp.str_replace(',',"",$cadenaIds).random_int(1,1000),
+            "user_nombre"=>$request['name']." ".$request['apellidos'],
+            "direccion"=>$request['calle'].", ".$request['cp'].", ".$request['poblacion'].", ".$request['provincia'],
+            "precio"=>\Cart::session(Auth::user()->id)->getSubTotal(),
+            "product_id"=>$cadenaIds,
+            "pedido"=>$cadenaProductos
+        ]);
+
+        //si paso de aquí la validación ha ido bien
+        $correo = new FacturaCarritoMailable($factura);
+
+        try{
+            Mail::to('soporte@carmotor.es')->send($correo);
+
+            \Cart::session(Auth::user()->id)->clear(); # Vaciamos el carrito
+        }catch(\Exception $ex){
+            
+            return redirect()->route('index')->with('correo', "No se pudo enviar el correo");
+        }
+
+        return redirect()->route('index')->with('correo', "Compra realizada, consulte su correo electronico");
+
+    }
+
 
     /* Funcion que se ejecuta cuando se pulsa el boton de añadir a la lista de deseos
 
@@ -133,6 +200,28 @@ class TiendaController extends Controller
     /* Funcion que añade el producto seleccionado al carrito de compra */
     public function addCarrito(Product $product){
 
+        \Cart::session(Auth::user()->id)->add(array(
+            'id'=>$product->id,
+            'name'=>$product->nombre,
+            'price'=>$product->precio,
+            'quantity'=>1,
+            'attributes'=>array('imagen'=>$product->imagen),
+        ));
+
+        /* dd(\Cart::session(Auth::user()->id)->getContent()); */
+
         return back()->with("carrito", "Producto añadido al carrito");
+    }
+
+    public function borrarUnProductoCarrito($id){
+        \Cart::session(Auth::user()->id)->remove($id);
+
+        return back();
+    }
+
+    public function limpiarCarrito(){
+        \Cart::session(Auth::user()->id)->clear();
+
+        return back();
     }
 }

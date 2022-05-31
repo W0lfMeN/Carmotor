@@ -42,8 +42,19 @@ Route::get('/tienda/{product:slug}', [TiendaController::class, 'tiendaProducto']
 Route::middleware(['auth:sanctum', 'verified'])->get('/tienda/addDeseo/{product:slug}', [TiendaController::class, 'addDeseo'])->name('tienda.addDeseo');
 Route::middleware(['auth:sanctum', 'verified'])->get('/tienda/addCarrito/{product:slug}', [TiendaController::class, 'addCarrito'])->name('tienda.addCarrito');
 Route::middleware(['auth:sanctum', 'verified'])->get('/listaDeDeseos', [TiendaController::class, 'listaDeseos'])->name('tienda.deseos');
+Route::middleware(['auth:sanctum', 'verified'])->get('/carrito', [TiendaController::class, 'carrito'])->name('tienda.carrito');
+Route::middleware(['auth:sanctum', 'verified'])->get('/carrito/limpiar', [TiendaController::class, 'limpiarCarrito'])->name('carrito.limpiar');
+Route::middleware(['auth:sanctum', 'verified'])->get('/carrito/borrar/{id}', [TiendaController::class, 'borrarUnProductoCarrito'])->name('carrito.borrar');
+
+
+
 Route::get('/comprarProducto/{product}', [TiendaController::class, 'comprarProducto'])->name('tienda.comprarProducto');
 Route::post('/comprarProducto/{product}', [TiendaController::class, 'procesarCompra'])->name('tienda.procesarProducto');
+
+Route::get('/comprarCarrito', [TiendaController::class, 'comprarCarrito'])->name('tienda.comprarCarrito');
+Route::post('/comprarCarrito', [TiendaController::class, 'procesarCarrito'])->name('tienda.procesarCarrito');
+
+
 
 /* Envio de formulario de contacto */
 Route::get('/contacto', [ContactoController::class, 'pintarFormulario'])->name('contacto.pintar');

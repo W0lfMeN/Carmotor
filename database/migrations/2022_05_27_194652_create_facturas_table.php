@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('product_id'); /* Ids de los productos */
             $table->text('pedido'); /* Nombre de los productos */
             $table->string('direccion');
-            $table->float('precio', 6,2); /* 6 cifras de las cuales 2 son decimales */
+            $table->float('precio', 8,2); /* 6 cifras de las cuales 2 son decimales */
 
             $table->timestamps();
         });
