@@ -123,7 +123,7 @@ Listado de facturas
                         {{-- Productos comprados --}}
                         <td class="px-6 py-4">
                             <div class="text-sm text-center font-medium text-gray-900">
-                                {{ $factura->pedido }}
+                                {{\Str::limit($factura->pedido, 100)}}
                             </div>
                         </td>
                         {{--  --}}

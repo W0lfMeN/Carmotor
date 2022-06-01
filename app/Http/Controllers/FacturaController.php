@@ -38,7 +38,9 @@ class FacturaController extends Controller
     public function show(Factura $factura)
     {
         //
-        # return view('adminDirectory.facturas.showFacturas', compact('factura'));
+        $productosComprados=explode(",",$factura['pedido']);
+        $idsProductos=explode(',',$factura->product_id);
+        return view('adminDirectory.facturas.showFacturas', compact('factura', 'productosComprados', 'idsProductos'));
     }
 
     public function exportarCsv(){
