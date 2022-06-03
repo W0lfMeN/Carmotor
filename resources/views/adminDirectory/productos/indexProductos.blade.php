@@ -121,7 +121,7 @@ Listado de Productos
                             <form action="{{ route('products.destroy', $producto) }}" method="POST">
                                 @csrf
                                 @method("DELETE")
-                                <button onclick='return confirmar(this.form, "producto")' id="submitBtn" name="submitBtn"
+                                <button onclick='return confirmar(this.form, "este producto")' id="submitBtn" name="submitBtn"
                                     class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                     <i class="fas fa-trash"></i></button>
                             </form>

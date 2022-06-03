@@ -103,7 +103,7 @@ class TiendaController extends Controller
 
 
         $factura=Factura::create([
-            "codigo"=>Carbon::now()->timestamp.$product->id.random_int(1,1000),
+            "codigo"=>substr(Carbon::now()->timestamp,-10).random_int(1,1000),
             "user_nombre"=>$request['name']." ".$request['apellidos'],
             "direccion"=>$request['calle'].", ".$request['cp'].", ".$request['poblacion'].", ".$request['provincia'],
             "precio"=>$product['precio'],
@@ -149,7 +149,7 @@ class TiendaController extends Controller
 
 
         $factura=Factura::create([
-            "codigo"=>Carbon::now()->timestamp.str_replace(',',"",$cadenaIds).random_int(1,1000),
+            "codigo"=>substr(Carbon::now()->timestamp,-10).random_int(1,1000),
             "user_nombre"=>$request['name']." ".$request['apellidos'],
             "direccion"=>$request['calle'].", ".$request['cp'].", ".$request['poblacion'].", ".$request['provincia'],
             "precio"=>\Cart::session(Auth::user()->id)->getSubTotal(),
@@ -165,7 +165,7 @@ class TiendaController extends Controller
 
             \Cart::session(Auth::user()->id)->clear(); # Vaciamos el carrito
         }catch(\Exception $ex){
-            
+
             return redirect()->route('index')->with('correo', "No se pudo enviar el correo");
         }
 

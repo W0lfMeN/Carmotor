@@ -106,7 +106,7 @@ Listado de Usuarios
                             <form action="{{ route('users.destroy', $user) }}" method="POST">
                                 @csrf
                                 @method("DELETE")
-                                <button onclick='return confirmar(this.form, "usuario de nombre {{ $user->name }}")' id="submitBtn" name="submitBtn"
+                                <button onclick='return confirmar(this.form, "este usuario de nombre {{ $user->name }}")' id="submitBtn" name="submitBtn"
                                     class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                     <i class="fas fa-trash"></i></button>
                             </form>

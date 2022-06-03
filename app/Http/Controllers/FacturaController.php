@@ -55,10 +55,12 @@ class FacturaController extends Controller
             /* Parseo la fecha con Carbon */
             $row['created_at']=Carbon::parse($row['created_at'])->format('d-m-Y H:i:s');
 
+            $cadenaProductos=str_replace(",","\n",$row['pedido']);
+
             fputcsv($handle,array(
                 $row['id'], $row['codigo'], $row['user_nombre'],
                 $row['product_id'],$row['direccion'],$row['precio'],
-                $row['created_at'], $row['pedido']
+                $row['created_at'], $cadenaProductos
                 )
             );
         }

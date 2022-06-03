@@ -63,7 +63,7 @@ Listado de Marcas
                                 <form action="{{ route('brands.destroy', $brand) }}" method="POST">
                                     @csrf
                                     @method("DELETE")
-                                    <button type="submit"
+                                    <button onclick='return confirmar(this.form, "la marca {{$brand->nombre}}")' id="submitBtn" name="submitBtn"
                                         class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                         <i class="fas fa-trash"></i></button>
                                 </form>

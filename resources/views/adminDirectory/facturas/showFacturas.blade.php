@@ -36,7 +36,7 @@ Datos de la factura {{$factura->codigo}}
         <p><b>Productos comprados</b></p>
         <ul class="list-disc pl-5">
             @foreach ($productosComprados as $item)
-                <li>{{$item}} <b>-> Su id es: {{$idsProductos[$loop->index]}}</b></li>
+                <li>{{$item}} <b>-> El id de este producto es: {{$idsProductos[$loop->index]}}</b></li>
             @endforeach
         </ul>
     </div>

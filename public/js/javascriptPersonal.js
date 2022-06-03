@@ -26,7 +26,7 @@ function confirmar(formulario, mensaje){
     event.preventDefault();
 
     Swal.fire({
-        title: '¿Seguro que desea borrar este '+mensaje+" ?",
+        title: '¿Seguro que desea borrar '+mensaje+" ?",
         text: "Esta acción no se puede deshacer",
         icon: 'info',
         showCancelButton: true,

@@ -4,7 +4,7 @@
     "Remember Me": "Recuérdame",
     "Login": "Acceder",
     "Forgot Your Password?": "¿Olvidaste tu contraseña?",
-    "Register": "Registro",
+    "Register": "Registrarse",
     "Name": "Nombre",
     "Confirm Password": "Confirmar contraseña",
     "Reset Password": "Restablecer contraseña",
@@ -53,5 +53,15 @@
     "Actualizar la cuenta's profile information and email address.": "Actualizar la cuenta y la direccion de correo",
     "Profile": "Perfil",
     "Manage Account": "Gestionar la cuenta",
-    "Log Out": "Cerrar sesión"
+    "Log Out": "Cerrar sesión",
+    "Remember me": "Recordarme",
+    "Forgot your password?": "Olvidó su contraseña?",
+    "Log in": "Inicar sesión",
+    "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "¿Ha olvidado su contraseña? No hay problema. Sólo tienes que indicarnos tu dirección de correo electrónico y te enviaremos un enlace para restablecer la contraseña que te permitirá elegir una nueva.",
+    "Email Password Reset Link":"Enviar correo de recuperación",
+    "Already registered?":"Se encuentra registrado?",
+    "For your security, please confirm your password to continue.":"Por su seguridad, confirme su contraseña para continuar.",
+    "Confirm":"Confirmar",
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.":"Una vez eliminada su cuenta, todos sus recursos y datos se borrarán permanentemente. Antes de eliminar su cuenta, descargue los datos o la información que desee conservar.",
+    "Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.":"¿Está seguro de que quiere eliminar su cuenta? Una vez eliminada su cuenta, todos sus recursos y datos se borrarán permanentemente. Por favor, introduzca su contraseña para confirmar que desea eliminar permanentemente su cuenta."
 }
