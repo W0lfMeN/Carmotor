@@ -47,13 +47,13 @@ Carrito
 
             </div>
 
-            <div class="p-3 mt-3 grid grid-cols-12 gap-4">
+            <div class="grid grid-cols-12 gap-4">
 
-                    <a href="{{route('tienda.comprarCarrito')}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Comprar Producto" class="@if (Cart::session(Auth::user()->id)->isEmpty()) pointer-events-none @endif col-span-12 md:col-span-6 lg:col-span-6 text-xl border-2 border-blue-300 rounded p-3 mt-3 text-center bg-blue-500 transition ease-in-out duration-500 hover:bg-blue-700 focus:ring-2 focus:outline-none focus:ring-blue-300 text-white">
+                    <a href="{{route('tienda.comprarCarrito')}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Comprar Producto" class="@if (Cart::session(Auth::user()->id)->isEmpty()) pointer-events-none @endif col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 text-lg border-2 border-blue-300 rounded py-3 mt-3 text-center bg-blue-500 transition ease-in-out duration-500 hover:bg-blue-700 focus:ring-2 focus:outline-none focus:ring-blue-300 text-white">
                         Comprar
                     </a>
 
-                    <a href="{{route('carrito.limpiar')}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Limpiar carrito" class="@if (Cart::session(Auth::user()->id)->isEmpty()) pointer-events-none @endif col-span-12 md:col-span-6 lg:col-span-6 text-xl border-2 border-red-300 rounded p-3 mt-3 text-center bg-red-500 transition ease-in-out duration-500 hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300 text-white" >
+                    <a href="{{route('carrito.limpiar')}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Limpiar carrito" class="@if (Cart::session(Auth::user()->id)->isEmpty()) pointer-events-none @endif col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 text-lg border-2 border-red-300 rounded py-3 mt-3 text-center bg-red-500 transition ease-in-out duration-500 hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300 text-white" >
                         Limpiar
                     </a>
 

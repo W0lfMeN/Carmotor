@@ -7,9 +7,9 @@ Listado de Marcas
 
     {{-- Alerta de informacion de lo que sea que se haya hecho --}}
     @if (session('mensaje'))
-        <x-alertainfo>
+        <x-alertaInfo>
             {{ session('mensaje') }}
-        </x-alertainfo>
+        </x-alertaInfo>
     @endif
 
     <div class="my-4">
