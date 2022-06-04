@@ -4,7 +4,7 @@
 @endsection
 @section('contenido')
     <div class="py-10">
-        <div class="sm:px-6 md:mx-24 lg:px-8 lg:mx-40">
+        <div class="sm:px-6 md:mx-14 lg:px-8 lg:mx-28">
             <form name="bus" action="{{ route('tienda') }}" method="get">
             {{-- Aqui mostramos el aside --}}
             <div class="grid grid-cols-12 gap-2 mx-3 sm:mx-1">

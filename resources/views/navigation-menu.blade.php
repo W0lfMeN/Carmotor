@@ -194,15 +194,6 @@
 
         </div>
 
-        {{-- Div del carrito de compra --}}
-        <div>
-            <x-jet-responsive-nav-link href="#" class="text-black font-bold border-y border-gray-200" :active="request()->routeIs('#')">
-                <p><i class="fa-solid fa-cart-shopping"></i>&nbsp;Carrito</p>
-            </x-jet-responsive-nav-link>
-        </div>
-
-
-
         @if (Route::has('login'))
             @auth
                 {{-- Cuando se está logueado --}}
@@ -210,6 +201,13 @@
                 <div>
                     <x-jet-responsive-nav-link href="{{route('tienda.deseos')}}" class="text-black font-bold border-y border-gray-200" :active="request()->routeIs('tienda.deseos')">
                         <p><i class="fa-solid fa-heart"></i>&nbsp;Lista de deseos</p>
+                    </x-jet-responsive-nav-link>
+                </div>
+
+                {{-- Div del carrito de compra --}}
+                <div>
+                    <x-jet-responsive-nav-link href="{{route('tienda.carrito')}}" class="text-black font-bold border-y border-gray-200" :active="request()->routeIs('#')">
+                        <p><i class="fa-solid fa-cart-shopping"></i>&nbsp;Carrito</p>
                     </x-jet-responsive-nav-link>
                 </div>
 

@@ -13,7 +13,7 @@ Listado de facturas
     @endif
 
     <div class="my-4">
-        <a href="{{ route('facturas.csv') }}" class="bg-green-500 font-bold hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-800 text-white">
+        <a href="{{ route('facturas.csv') }}" class="bg-green-500 font-bold hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center text-white">
             <i class="fa-solid fa-file-export"></i> Exportar tabla a CSV</a>
     </div>
 

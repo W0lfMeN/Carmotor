@@ -48,7 +48,7 @@ Datos de la factura {{$factura->codigo}}
 
     {{-- Volver a index --}}
     <div class="p-5">
-        <a href="{{ route('facturas.index') }}" class="bg-orange-500 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-orange-800 text-white"><i class="fas fa-backward"></i> Regresar</a>
+        <a href="{{ route('facturas.index') }}" class="bg-orange-500 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center text-white"><i class="fas fa-backward"></i> Regresar</a>
     </div>
 </div>
 @endsection

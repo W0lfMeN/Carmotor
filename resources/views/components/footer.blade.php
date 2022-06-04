@@ -6,19 +6,20 @@
             <span class="self-center text-2xl font-semibold whitespace-nowrap">CarMotor.es</span>
         </button>
         <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0">
-            <li>
+            {{-- <li>
                 <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
-            </li>
+            </li> --}}
             <li>
-                <a href="{{route('contacto.pintar')}}" class="hover:underline">Contactanos</a>
+                <a href="{{route('contacto.pintar')}}" class="hover:underline text-lg">Contactanos</a>
             </li>
         </ul>
     </div>
 
     <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
 
-    <div class="sm:flex sm:items-center sm:justify-between h-10">
-        <span class="text-sm text-gray-500 sm:text-center">© 2022 CarMotor. Todos los derechos Reservados.
+    <div class="sm:flex sm:items-center sm:justify-between h-10 mb-5">
+        <span class="text-sm text-gray-500 sm:text-center">
+            <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>Esta obra está bajo una <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Licencia Creative Commons Atribución 4.0 Internacional</a>.
         </span>
         <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
 

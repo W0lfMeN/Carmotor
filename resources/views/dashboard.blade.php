@@ -7,6 +7,7 @@
 
     <div class="py-10">
         <div class="sm:px-6 md:mx-24 lg:px-8 lg:mx-48">
+            @include('cookie-consent::index')
             {{-- Seccion de productos con bajo stock --}}
             <!-- Productos con bajo Stock -->
             <span class="text-2xl font-bold">Piezas a punto de agotarse</span>

@@ -15,7 +15,7 @@
 
          {{-- Sweet alert --}}
          <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-         
+
         <!-- Styles -->
         <link rel="icon" href="{{ url('storage/resources/Logo.jpeg') }}">
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">

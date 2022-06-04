@@ -58,7 +58,7 @@ class ProductController extends Controller
         $request->validate([
             'nombre'=>['required', 'string', 'min:2', 'unique:products,nombre'],
             'descripcion'=>['required', 'string', 'min:20'],
-            'precio'=>['required', 'numeric', 'min:0'],
+            'precio'=>['required', 'numeric', 'min:1'],
             'cantidad'=>['required', 'digits_between:0,3', 'min:0'],
             'fecha_venta'=>['required', 'date_format:d/m/Y'],
             'tipo'=>['required', 'string', 'in:' . implode(',', $tipos)],
@@ -169,7 +169,7 @@ class ProductController extends Controller
         $request->validate([
             'nombre'=>['required', 'string', 'min:2', 'unique:products,nombre,'. $product->id],
             'descripcion'=>['required', 'string', 'min:20'],
-            'precio'=>['required', 'numeric', 'min:0'],
+            'precio'=>['required', 'numeric', 'min:1'],
             'cantidad'=>['required', 'digits_between:0,3', 'min:0'],
             'fecha_venta'=>['required', 'date_format:d/m/Y'],
             'tipo'=>['required', 'string', 'in:' . implode(',', $tipos)],
