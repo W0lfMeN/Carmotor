@@ -200,17 +200,22 @@ class TiendaController extends Controller
     /* Funcion que añade el producto seleccionado al carrito de compra */
     public function addCarrito(Product $product){
 
-        \Cart::session(Auth::user()->id)->add(array(
-            'id'=>$product->id,
-            'name'=>$product->nombre,
-            'price'=>$product->precio,
-            'quantity'=>1,
-            'attributes'=>array('imagen'=>$product->imagen),
-        ));
+        /* Si entra aqui es que se está intentando añadir al carrito un producto agotado, impedimos que eso ocurra */
+        if($product->cantidad==0){
+            return redirect()->route('tienda.producto', compact('product'));
+        }else{
+            \Cart::session(Auth::user()->id)->add(array(
+                'id'=>$product->id,
+                'name'=>$product->nombre,
+                'price'=>$product->precio,
+                'quantity'=>1,
+                'attributes'=>array('imagen'=>$product->imagen),
+            ));
 
-        /* dd(\Cart::session(Auth::user()->id)->getContent()); */
+            /* dd(\Cart::session(Auth::user()->id)->getContent()); */
 
-        return back()->with("carrito", "Producto añadido al carrito");
+            return back()->with("carrito", "Producto añadido al carrito");
+        }
     }
 
     public function borrarUnProductoCarrito($id){

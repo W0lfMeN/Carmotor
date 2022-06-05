@@ -36,7 +36,7 @@ Lista de deseos
 
                     </a>
 
-                    <a href="{{route('tienda.comprarProducto', $producto)}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Comprar Producto" class="col-span-12 md:col-span-6  lg:col-span-3 lg:pt-3 text-xl border-2 rounded mt-3 text-center text-gray-500 transition ease-in-out duration-700 hover:bg-green-500 hover:text-white focus:ring-2 focus:outline-none focus:ring-green-500">
+                    <a href="{{route('tienda.comprarProducto', $producto)}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Comprar Producto" class="@if ($producto->cantidad==0) pointer-events-none @endif col-span-12 md:col-span-6  lg:col-span-3 lg:pt-3 text-xl border-2 rounded mt-3 text-center text-gray-500 transition ease-in-out duration-700 hover:bg-green-500 hover:text-white focus:ring-2 focus:outline-none focus:ring-green-500">
                         <i class="fa-solid fa-credit-card"></i>
                     </a>
 

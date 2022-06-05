@@ -95,7 +95,7 @@
 
                     <div class="grid grid-cols-12 gap-4">
 
-                        <a href="{{route('tienda.addDeseo', $product)}}" data-bs-toggle="tooltip" data-bs-placement="bottom" @if (Auth::check() && $product->users->contains(Auth::user()->id)) title="Eliminar de la lista de deseos" @else title="Añadir de la lista de deseos" @endif class="@if ($product->cantidad==0) pointer-events-none @endif col-span-12 md:col-span-6 md:pt-6 lg:col-span-1 lg:pt-3 text-xl border-2 rounded mt-3 text-center text-gray-500 transition ease-in-out duration-700 @if (Auth::check() && $product->users->contains(Auth::user()->id)) hover:bg-red-500 focus:ring-red-500 @else hover:bg-green-500 focus:ring-green-500 @endif hover:text-white focus:ring-2 focus:outline-none">
+                        <a href="{{route('tienda.addDeseo', $product)}}" data-bs-toggle="tooltip" data-bs-placement="bottom" @if (Auth::check() && $product->users->contains(Auth::user()->id)) title="Eliminar de la lista de deseos" @else title="Añadir de la lista de deseos" @endif class="{{-- @if ($product->cantidad==0) pointer-events-none @endif --}} col-span-12 md:col-span-6 md:pt-6 lg:col-span-1 lg:pt-3 text-xl border-2 rounded mt-3 text-center text-gray-500 transition ease-in-out duration-700 @if (Auth::check() && $product->users->contains(Auth::user()->id)) hover:bg-red-500 focus:ring-red-500 @else hover:bg-green-500 focus:ring-green-500 @endif hover:text-white focus:ring-2 focus:outline-none">
                             @if (Auth::check() && $product->users->contains(Auth::user()->id))
                                 <i class="fa-solid fa-heart-circle-check"></i>
                             @else

@@ -55,9 +55,9 @@ class ProductFactory extends Factory
             'slug'=>Str::slug($nombre, '-'),
 
             'precio'=>$this->faker->randomFloat(2,10,9999), /* un float aleatorio entre 10 y 9999 con 2 decimales */
-            'cantidad'=>random_int(0,10), /* Si es 0 quiere decir que no hay stock */
+            'cantidad'=>random_int(0,100), /* Si es 0 quiere decir que no hay stock */
 
-            'fecha_venta'=>$this->faker->dateTimeBetween('-20 days', '+30 days'), /* Retorna una fecha aleatoria desde 20 dias antes a 30 dias despues desde la fecha de hoy */
+            'fecha_venta'=>$this->faker->dateTimeBetween('-30 days', '+1 days'), /* Retorna una fecha aleatoria desde 20 dias antes a 30 dias despues desde la fecha de hoy */
             'tipo'=>$tipoAleatorio, //Selecciona un tipo aleatorio del array anterior
         ];
         /* FACTORY COMPLETADO */

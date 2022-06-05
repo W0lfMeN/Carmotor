@@ -5,17 +5,17 @@ Carrito
 @section('contenido')
 <div class="px-4 sm:px-6 lg:px-20 lg:py-20">
 
-    <div class="grid grid-cols-2 gap-4">
-        <div class="border-4 rounded p-3 mt-3 bg-white border-gray-200">
+    <div class="grid grid-cols-2 gap-3">
+        <div class="border-2 rounded p-3 mt-3 bg-white border-gray-200">
 
             {{-- Div del bloque --}}
             @foreach (Cart::session(Auth::user()->id)->getContent() as $item)
-                 <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 border-4 rounded p-3 mt-3 bg-white border-gray-200">
-                     <div class="grid grid-cols-12 gap-4 lg:mb-3">
+                 <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 border-2 rounded p-3 mt-3 bg-white border-gray-200">
+                     <div class="grid grid-cols-12 gap-2 lg:mb-3">
                          {{-- Imagen --}}
                          <div class="col-span-12 sm:col-span-12 md:col-span-6">
                              <div class="overflow-hidden relative rounded-lg  ">
-                                 <img src="{{Storage::url($item->attributes['imagen'])}}" class="w-4/5" alt="">
+                                 <img src="{{Storage::url($item->attributes['imagen'])}}" class="w-full sm:w-11/12" alt="">
                              </div>
                          </div>
                          {{--  --}}
@@ -25,23 +25,22 @@ Carrito
                              <h2 class="text-xl font-medium pt-3">{{$item->price}} €</h2>
                              <h2 class="text-md font-medium pt-3">Cantidad: {{$item->quantity}} </h2>
 
-                            <div class="pt-5 place-items-end">
-                                <a href="{{route('carrito.borrar', $item->id)}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar del carrito" class="col-span-12 md:col-span-6 lg:col-span-6 text-xl border-1 border-red-300 rounded p-3 mt-3 bg-red-500 transition ease-in-out duration-500 hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300 text-white" ><i class="fa-solid fa-trash"></i></a>
+                            <div class="pt-5">
+                                <a href="{{route('carrito.borrar', $item->id)}}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar del carrito" class="col-span-12 md:col-span-6 lg:col-span-6 text-xl border-1 border-red-300 rounded p-1 mt-1 md:p-3 md:mt-3 bg-red-500 transition ease-in-out duration-500 hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300 text-white" ><i class="fa-solid fa-trash"></i></a>
 
                             </div>
                          </div>
                          {{--  --}}
                     </div>
-                     <hr>
 
                  </div>
             @endforeach
 
         </div>
 
-        <div class="border-4 rounded p-3 mt-3 bg-white border-gray-200 ">
-            <div class="border-4 rounded p-3 mt-3 bg-white border-gray-200">
-                <div class="">
+        <div class="border-2 rounded p-3 mt-3 bg-white border-gray-200 ">
+            <div class="border-2 rounded p-3 mt-3 bg-white border-gray-200">
+                <div>
                     <h2><b>Coste total:</b> {{Cart::session(Auth::user()->id)->getSubTotal()}} €</h2>
                 </div>
 

@@ -59,7 +59,7 @@ class FacturaController extends Controller
 
             fputcsv($handle,array(
                 $row['id'], $row['codigo'], $row['user_nombre'],
-                $row['product_id'],$row['direccion'],$row['precio'],
+                $row['product_id'],$row['direccion'],$row['precio']." €",
                 $row['created_at'], $cadenaProductos
                 )
             );

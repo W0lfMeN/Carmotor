@@ -1,6 +1,15 @@
 ID,CODIGO,USER_NOMBRE,PRODUCT_ID,DIRECCION,PRECIO,"FECHA DE FACTURACION",PEDIDO
-12,60527100543,"Carlos admin",100,"Calle rio jucar Nº32, 04230, almeria, almeria",9956.08,"2022-06-02 09:02:07","nulla ut voluptatem rerum perspiciatis reiciendis earum rem"
-13,605801003699123816,"Carlos admin","100,36,99,123","Calle rio jucar Nº32, 04230, almeria, almeria",39533.01,"2022-06-02 09:03:00"," nulla ut voluptatem rerum perspiciatis reiciendis earum rem
+12,60527100543,"Carlos admin",100,"Calle rio jucar Nº32, 04230, almeria, almeria","9956.08 €","2022-06-02 09:02:07","nulla ut voluptatem rerum perspiciatis reiciendis earum rem"
+13,605801003699123816,"Carlos admin","100,36,99,123","Calle rio jucar Nº32, 04230, almeria, almeria","39533.01 €","2022-06-02 09:03:00"," nulla ut voluptatem rerum perspiciatis reiciendis earum rem
  ratione fugit corporis provident atque blanditiis in sapiente
  hic molestiae ut voluptatum non aut ullam provident
  porro nisi qui aperiam doloremque ex est tempore"
+14,60686721,"Carlos admin","36,99,123","Calle rio jucar Nº32, 04230, almeria, almeria","29576.93 €","2022-06-02 09:04:46"," ratione fugit corporis provident atque blanditiis in sapiente
+ hic molestiae ut voluptatum non aut ullam provident
+ porro nisi qui aperiam doloremque ex est tempore"
+15,1654160731493,"Carlos admin",100,"Calle rio jucar Nº32, 04230, almeria, almeria","9956.08 €","2022-06-02 09:05:31","nulla ut voluptatem rerum perspiciatis reiciendis earum rem"
+16,1654160769567,"Carlos admin","12,13,18,32,36","Calle rio jucar Nº32, 04230, almeria, almeria","25593.57 €","2022-06-02 09:06:09"," et quae aut alias iure et aperiam enim
+ dolorem dolorem minus molestiae blanditiis autem illo id
+ nostrum nobis possimus quae enim adipisci laborum at
+ molestiae ea id aspernatur reprehenderit culpa blanditiis et
+ ratione fugit corporis provident atque blanditiis in sapiente"
