@@ -89,7 +89,7 @@
                         @foreach ($productos as $producto)
                             {{--  --}}
                             <a href="{{route('tienda.producto', $producto)}}" class="rounded overflow-hidden @if($loop->iteration/4 <=1) mb-5 @else mb-10 @endif shadow-lg hover:shadow-2xl transform transition duration-500 hover:scale-110 ease-in-out">
-                                <img class="w-full" src="{{Storage::url($producto->imagen)}}" alt="{{$producto->nombre}}">
+                                <img loading="lazy" class="w-full" src="{{Storage::url($producto->imagen)}}" alt="{{$producto->nombre}}">
                                 <div class="px-6 py-4">
                                     <div class="font-bold text-xl mb-2">{{$producto->nombre}}</div>
                                     <p class="font-bold text-xl text-center">

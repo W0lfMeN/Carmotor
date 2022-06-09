@@ -18,7 +18,7 @@
                 @foreach ($piezasEnEscasez as $pieza)
                     {{--  --}}
                     <a href="{{route('tienda.producto', $pieza)}}" class="rounded overflow-hidden @if($loop->iteration/4 <=1) mb-5 @else mb-10 @endif shadow-lg hover:shadow-2xl transform transition duration-500 hover:scale-110 ease-in-out">
-                        <img class="w-full" src="{{Storage::url($pieza->imagen)}}" alt="{{$pieza->nombre}}">
+                        <img loading="lazy" class="w-full" src="{{Storage::url($pieza->imagen)}}" alt="{{$pieza->nombre}}">
                         <div class="px-6 py-4">
                           <div class="font-bold text-xl mb-2">{{$pieza->nombre}}</div>
                           <p class="font-bold text-xl text-center">
@@ -50,7 +50,7 @@
                 @foreach ($piezasNuevas as $pieza)
                     {{--  --}}
                     <a href="{{route('tienda.producto', $pieza)}}" class="rounded overflow-hidden @if($loop->iteration/4 <=1) mb-5 @else mb-10 @endif shadow-lg hover:shadow-2xl transform transition duration-500 hover:scale-110 ease-in-out">
-                        <img class="w-full" src="{{Storage::url($pieza->imagen)}}" alt="{{$pieza->nombre}}">
+                        <img loading="lazy" class="w-full" src="{{Storage::url($pieza->imagen)}}" alt="{{$pieza->nombre}}">
                         <div class="px-6 py-4">
                           <div class="font-bold text-xl mb-2">{{$pieza->nombre}}</div>
                           <p class="font-bold text-xl text-center">
@@ -85,7 +85,7 @@
                     {{--  --}}
                     {{-- Si la iteracion va  --}}
                     <a href="{{route('tienda.producto', $pieza)}}" class="rounded overflow-hidden @if($loop->iteration/4 <=1) mb-5 @else mb-10 @endif shadow-lg hover:shadow-2xl transform transition duration-500 hover:scale-110 ease-in-out">
-                        <img class="w-full" src="{{Storage::url($pieza->imagen)}}" alt="{{$pieza->nombre}}">
+                        <img loading="lazy" class="w-full" src="{{Storage::url($pieza->imagen)}}" alt="{{$pieza->nombre}}">
                         <div class="px-6 py-4">
                           <div class="font-bold text-xl mb-2">{{$pieza->nombre}}</div>
                           <p class="font-bold text-xl text-center">
