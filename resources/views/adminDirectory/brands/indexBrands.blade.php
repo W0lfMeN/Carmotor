@@ -18,7 +18,7 @@ Listado de Marcas
     </div>
 
     @if(count($brands)==0)
-        <x-alertaInfo>No hay registros de marcas.</x-alertaInfo>
+        <x-alertaAmarilla>No hay registros de marcas.</x-alertaAmarilla>
     @else
 
         <x-estructuraTabla>
