@@ -14,7 +14,7 @@ Rellene los datos de envio
             {{-- Nombre y apellidos --}}
             <div class="grid xl:grid-cols-2 xl:gap-6 pt-4">
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="text" name="name" id="name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if (Auth::check()) value="{{auth::user()->name}}" readonly @endif/>
+                    <input type="text" name="name" id="name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if (Auth::check()) value="{{auth::user()->name}}" @endif/>
                     <label for="name" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nombre</label>
 
                     @error('name')
@@ -22,7 +22,7 @@ Rellene los datos de envio
                     @enderror
                 </div>
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="text" name="apellidos" id="apellidos" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if (Auth::check()) value="{{auth::user()->apellidos}}" readonly @endif />
+                    <input type="text" name="apellidos" id="apellidos" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if (Auth::check()) value="{{auth::user()->apellidos}}" @endif />
                     <label for="apellidos" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Apellidos</label>
 
                     @error('apellidos')
@@ -35,7 +35,7 @@ Rellene los datos de envio
             {{-- Correo electronico --}}
 
             <div class="relative z-0 w-full mb-6 group">
-                <input type="email" name="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if (Auth::check()) value="{{auth::user()->email}}" readonly @endif/>
+                <input type="email" name="email" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if (Auth::check()) value="{{auth::user()->email}}" @endif/>
                 <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
 
                 @error('email')
@@ -51,7 +51,7 @@ Rellene los datos de envio
             <div class="grid xl:grid-cols-2 xl:gap-6 pt-4">
                 {{-- Calle --}}
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="text" name="calle" id="calle" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if($direccion!=null) value="{{$direccion[0]}}" readonly  @endif  />
+                    <input type="text" name="calle" id="calle" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if($direccion!=null) value="{{$direccion[0]}}"  @endif  />
                     <label for="calle" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Calle, Nº</label>
 
                     @error('calle')
@@ -61,7 +61,7 @@ Rellene los datos de envio
                 {{--  --}}
                 {{-- Codigo postal --}}
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="number" name="cp" id="cp" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if($direccion!=null) value={{$direccion[1]}} readonly  @endif />
+                    <input type="number" name="cp" id="cp" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if($direccion!=null) value={{$direccion[1]}}  @endif />
                     <label for="cp" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Codigo Postal (CP)</label>
 
                     @error('cp')
@@ -71,7 +71,7 @@ Rellene los datos de envio
                 {{--  --}}
                 {{-- Poblacion --}}
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="text" name="poblacion" id="poblacion" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if($direccion!=null) value="{{$direccion[2]}}" readonly  @endif />
+                    <input type="text" name="poblacion" id="poblacion" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if($direccion!=null) value="{{$direccion[2]}}"  @endif />
                     <label for="poblacion" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Poblacion</label>
 
                     @error('poblacion')
@@ -81,7 +81,7 @@ Rellene los datos de envio
                 {{--  --}}
                 {{-- Provincia --}}
                 <div class="relative z-0 w-full mb-6 group">
-                    <input type="text" name="provincia" id="provincia" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if($direccion!=null) value="{{$direccion[3]}}" readonly  @endif />
+                    <input type="text" name="provincia" id="provincia" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " @if($direccion!=null) value="{{$direccion[3]}}"  @endif />
                     <label for="provincia" class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Provincia</label>
 
                     @error('provincia')

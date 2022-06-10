@@ -41,7 +41,21 @@ class DatabaseSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
 
             'rol'=>2, /* 1 = Usuario normal || 2 = Usuario Admin */
-            'direccion'=>"Calle rio jucar Nº32, 04230, almeria, almeria", /* Genera una direccion aleatoria */
+            'direccion'=>"Calle rio jucar Nº32, 04230, almeria, almeria",
+
+            'remember_token' => Str::random(10),
+        ]);
+
+        /* Se crea la cuenta para el profesorado */
+        User::create([
+            'name' => "Profesores",
+            'apellidos'=>"Admins",
+            'email' => "profesorado@gmail.com",
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+
+            'rol'=>2, /* 1 = Usuario normal || 2 = Usuario Admin */
+            'direccion'=>"Calle rio jucar Nº32, 04230, almeria, almeria",
 
             'remember_token' => Str::random(10),
         ]);

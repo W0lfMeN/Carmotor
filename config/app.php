@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', $_SERVER['SERVER_NAME']),
 
     'asset_url' => env('ASSET_URL'),
 
