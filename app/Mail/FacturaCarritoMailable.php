@@ -25,7 +25,7 @@ class FacturaCarritoMailable extends Mailable
          //Guardamos los datos de la factura en el array
          $this->datosFactura=$datos; # Este array tendrá todos los campos de la factura
 
-         $this->listadoPedidos=explode(",",$datos['pedido']);
+         $this->listadoPedidos=explode(",",$datos['pedido']); #Metemos todos los pedidos en un array
     }
 
     /**
@@ -35,6 +35,6 @@ class FacturaCarritoMailable extends Mailable
      */
     public function build()
     {
-        return $this->from(env('MAIL_FROM_ADDRESS'))->markdown('mails.facturas.facturaCarrito');
+        return $this->from(env('MAIL_FROM_ADDRESS'))->markdown('mails.facturas.facturaCarrito'); #Enviamos el correo
     }
 }

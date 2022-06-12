@@ -27,6 +27,7 @@ class TiendaController extends Controller
 
         $marcaId=$request['radioMarcas'];
 
+        /* Si se ha deseado filtrar por marcas, la sentencia sql que se ejecuta es esta. En caso contrario se ejecuta otra*/
         if($marcaId==null){
             $productos=Product::where([['cantidad', '!=', 0]])->nombre($request->nombre)->tipos($request->radioTipos)->orderBy('precio', $ordenPrecio)->paginate(12)
             ->withQueryString();
@@ -74,6 +75,7 @@ class TiendaController extends Controller
         return view('tienda.showFacturacionSimple', compact('product', 'direccion'));
     }
 
+    /* Funcion que carga la vista del formulario del carrito */
     public function comprarCarrito(){
 
         if(Auth::check()){
@@ -86,6 +88,7 @@ class TiendaController extends Controller
     }
 
 
+    /* Funcion que valida el formulario de la compra de un producto */
     public function procesarCompra(Request $request, Product $product){
         $request->validate([
             'name' => ['required', 'string'],
@@ -115,15 +118,20 @@ class TiendaController extends Controller
         $correo = new FacturaSimpleMailable($factura);
 
         try{
-            Mail::to('soporte@carmotor.es')->send($correo);
+            Mail::to(Auth::user()->email)->send($correo);
+
+            /* Si el producto comprado se encuentra en la lista de deseos, se borra de dicha lista */
+            if($product->users->contains(Auth::user()->id)){
+                $product->users()->detach(Auth::user()->id);
+            }
         }catch(\Exception $ex){
-            dd($ex);
             return redirect()->route('index')->with('correo', "No se pudo enviar el correo");
         }
 
         return redirect()->route('index')->with('correo', "Compra realizada, consulte su correo electronico");
     }
 
+    /* Funcion que valida el formulario del carrito */
     public function procesarCarrito(Request $request){
 
         $request->validate([
@@ -161,15 +169,24 @@ class TiendaController extends Controller
         $correo = new FacturaCarritoMailable($factura);
 
         try{
-            Mail::to('soporte@carmotor.es')->send($correo);
+            Mail::to(Auth::user()->email)->send($correo);
+
+            /* Comprobamos si alguno de los productos que han sido comprados se encuentra en la lista de deseos.
+               Si este se encuentra, se elimina de dicha lista
+            */
+            for($i=0; $i<count(Auth::user()->products);$i++){
+                if(Auth::user()->products->contains($arrayIds[$i])){
+                    Auth::user()->products()->detach($arrayIds[$i]);
+                }
+            }
 
             \Cart::session(Auth::user()->id)->clear(); # Vaciamos el carrito
         }catch(\Exception $ex){
 
-            return redirect()->route('index')->with('correo', "No se pudo enviar el correo");
+            return redirect()->route('index')->with('correo', "No se pudo enviar el correo"); #Volvemos con un mensaje de error
         }
 
-        return redirect()->route('index')->with('correo', "Compra realizada, consulte su correo electronico");
+        return redirect()->route('index')->with('correo', "Compra realizada, consulte su correo electronico"); #Volvemos
 
     }
 
@@ -193,7 +210,7 @@ class TiendaController extends Controller
             $mensaje="Producto añadido a la lista de deseos";
         }
 
-        return back()->with("deseo", $mensaje);
+        return back()->with("deseo", $mensaje); #Volvemos
     }
 
 
@@ -204,6 +221,7 @@ class TiendaController extends Controller
         if($product->cantidad==0){
             return redirect()->route('tienda.producto', compact('product'));
         }else{
+            /* Creamos en el carrito el producto */
             \Cart::session(Auth::user()->id)->add(array(
                 'id'=>$product->id,
                 'name'=>$product->nombre,
@@ -212,21 +230,27 @@ class TiendaController extends Controller
                 'attributes'=>array('imagen'=>$product->imagen),
             ));
 
-            /* dd(\Cart::session(Auth::user()->id)->getContent()); */
-
-            return back()->with("carrito", "Producto añadido al carrito");
+            return back()->with("carrito", "Producto añadido al carrito"); #Volvemos
         }
     }
 
+    /* Funcion que borra un producto del carrito */
     public function borrarUnProductoCarrito($id){
-        \Cart::session(Auth::user()->id)->remove($id);
+        /* Si en dicho producto hay mas de una cantidad, se le resta una. Si la cantidad ya es 1 se borra del carrito */
+        if(\Cart::session(Auth::user()->id)->get($id)->quantity==1){
+
+            \Cart::session(Auth::user()->id)->remove($id);
+        }else{
+            \Cart::session(Auth::user()->id)->update($id, array('quantity'=>-1));
+        }
 
         return back();
     }
 
+    /* Funcion que limpia el carrito de compra */
     public function limpiarCarrito(){
         \Cart::session(Auth::user()->id)->clear();
 
-        return back();
+        return back(); #Volvemos
     }
 }

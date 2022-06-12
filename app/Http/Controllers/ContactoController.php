@@ -14,6 +14,7 @@ class ContactoController extends Controller
         return view('mails.contacto.formIndexContacto');
     }
 
+    /* Funcion que procesa el formulario de contacto */
     public function procesarFormulario(Request $request){
         $request->validate([
             'nombre'=>['required', 'string', 'min:3'],
@@ -25,12 +26,12 @@ class ContactoController extends Controller
         $correo = new ContactoMailable($request->all());
 
         try{
-            Mail::to('soporte@carmotor.es')->send($correo);
+            Mail::to('soporte@carmotor.es')->send($correo); #Enviamos un correo al soporte
         }catch(\Exception $ex){
 
-            return redirect()->route('index')->with('correo', "No se pudo enviar el correo");
+            return redirect()->route('index')->with('correo', "No se pudo enviar el correo"); #Volvemos con un mensaje de error
         }
 
-        return redirect()->route('index')->with('correo', "Correo enviado, gracias");
+        return redirect()->route('index')->with('correo', "Correo enviado, gracias"); #Volvemos
     }
 }

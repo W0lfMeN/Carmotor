@@ -43,13 +43,15 @@ class FacturaController extends Controller
         return view('adminDirectory.facturas.showFacturas', compact('factura', 'productosComprados', 'idsProductos'));
     }
 
+    /* Funcion que exporta la tabla facturas a un archivo csv */
     public function exportarCsv(){
 
-        $table = Factura::all();
-        $filename = "Facturas.csv";
-        $handle = fopen($filename, 'w+');
-        fputcsv($handle, array('ID', 'CODIGO', 'USER_NOMBRE', 'PRODUCT_ID', 'DIRECCION', 'PRECIO',  'FECHA DE FACTURACION', 'PEDIDO'));
+        $table = Factura::all(); #Obtenemos toda la tabla facturas
+        $filename = "Facturas.csv"; #Nombre del archivo
+        $handle = fopen($filename, 'w+'); #Abrimos el flujo de datos
+        fputcsv($handle, array('ID', 'CODIGO', 'USER_NOMBRE', 'PRODUCT_ID', 'DIRECCION', 'PRECIO',  'FECHA DE FACTURACION', 'PEDIDO')); #la cabecera
 
+        /* Bucle que va rellenando la tabla */
         foreach($table as $row) {
 
             /* Parseo la fecha con Carbon */
@@ -65,13 +67,14 @@ class FacturaController extends Controller
             );
         }
 
-        fclose($handle);
+        fclose($handle); #Cerramos el flujo
 
+        /* El tipo de archivo */
         $headers = array(
             'Content-Type' => 'text/csv',
         );
 
-        return csv::download($filename, 'Facturas.csv', $headers);
+        return csv::download($filename, 'Facturas.csv', $headers); #Se abre una ventana para descargar el archivo
 
     }
 }
