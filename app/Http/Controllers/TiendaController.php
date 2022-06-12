@@ -118,13 +118,16 @@ class TiendaController extends Controller
         $correo = new FacturaSimpleMailable($factura);
 
         try{
-            Mail::to(Auth::user()->email)->send($correo);
+            Mail::to($request['email'])->send($correo);
 
-            /* Si el producto comprado se encuentra en la lista de deseos, se borra de dicha lista */
-            if($product->users->contains(Auth::user()->id)){
-                $product->users()->detach(Auth::user()->id);
+            if(Auth::check()){
+                /* Si el producto comprado se encuentra en la lista de deseos, se borra de dicha lista */
+                if($product->users->contains(Auth::user()->id)){
+                    $product->users()->detach(Auth::user()->id);
+                }
             }
         }catch(\Exception $ex){
+            dd($ex);
             return redirect()->route('index')->with('correo', "No se pudo enviar el correo");
         }
 
@@ -169,16 +172,18 @@ class TiendaController extends Controller
         $correo = new FacturaCarritoMailable($factura);
 
         try{
-            Mail::to(Auth::user()->email)->send($correo);
+            Mail::to($request['email'])->send($correo);
 
-            /* Comprobamos si alguno de los productos que han sido comprados se encuentra en la lista de deseos.
-               Si este se encuentra, se elimina de dicha lista
-            */
-            for($i=0; $i<count(Auth::user()->products);$i++){
-                if(Auth::user()->products->contains($arrayIds[$i])){
-                    Auth::user()->products()->detach($arrayIds[$i]);
+           if(Auth::check()){
+                /* Comprobamos si alguno de los productos que han sido comprados se encuentra en la lista de deseos.
+                   Si este se encuentra, se elimina de dicha lista
+                */
+                for($i=0; $i<count(Auth::user()->products);$i++){
+                    if(Auth::user()->products->contains($arrayIds[$i])){
+                        Auth::user()->products()->detach($arrayIds[$i]);
+                    }
                 }
-            }
+           }
 
             \Cart::session(Auth::user()->id)->clear(); # Vaciamos el carrito
         }catch(\Exception $ex){
