@@ -171,23 +171,37 @@ class TiendaController extends Controller
         //si paso de aquí la validación ha ido bien
         $correo = new FacturaCarritoMailable($factura);
 
+        $contador=0;
+        //$i=0;
         try{
-            Mail::to($request['email'])->send($correo);
 
            if(Auth::check()){
                 /* Comprobamos si alguno de los productos que han sido comprados se encuentra en la lista de deseos.
                    Si este se encuentra, se elimina de dicha lista
                 */
                 for($i=0; $i<count(Auth::user()->products);$i++){
-                    if(Auth::user()->products->contains($arrayIds[$i])){
-                        Auth::user()->products()->detach($arrayIds[$i]);
+                    /* Este isset se ha puesto porque si el producto se encuentra en la lista de deseos y se quiere comprar mas de una cantidad de dicho producto
+                       Provoca un error. El error que provoca es "undefined array key (posicion donde está numero del producto)
+                       Es por esto que se ha puesto este isset que comprueba que existe la posicion del array a la que queremos acceder
+                       si existe se comprueba, en caso contrario no hace nada.
+
+                       El problema puede ser ocasionado porque no se porqué (tal vez por la cantidad del producto)
+                       se realiza una iteracion de mas y por eso busca una posicion nula
+                    */
+                    if(isset($arrayIds[$i])){
+                        if(Auth::user()->products->contains($arrayIds[$i])){
+                            Auth::user()->products()->detach($arrayIds[$i]);
+                            //$contador++;
+                        }
                     }
                 }
            }
+            Mail::to($request['email'])->send($correo);
+
 
             \Cart::session(Auth::user()->id)->clear(); # Vaciamos el carrito
         }catch(\Exception $ex){
-
+            //dd(["EXception"=>$ex,"contador" => $contador, "ArraysIds"=>$arrayIds, "Iteracion numero"=>$i, "Auth::user->product" =>Auth::user()->products, "Auth::user->product" =>count(Auth::user()->products) ]);
             return redirect()->route('index')->with('correo', "No se pudo enviar el correo"); #Volvemos con un mensaje de error
         }
 
