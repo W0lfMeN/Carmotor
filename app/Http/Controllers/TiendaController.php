@@ -127,7 +127,7 @@ class TiendaController extends Controller
                 }
             }
         }catch(\Exception $ex){
-            dd($ex);
+            //dd($ex);
             return redirect()->route('index')->with('correo', "No se pudo enviar el correo");
         }
 
@@ -171,7 +171,7 @@ class TiendaController extends Controller
         //si paso de aquí la validación ha ido bien
         $correo = new FacturaCarritoMailable($factura);
 
-        $contador=0;
+        //$contador=0;
         //$i=0;
         try{
 
@@ -180,6 +180,7 @@ class TiendaController extends Controller
                    Si este se encuentra, se elimina de dicha lista
                 */
                 for($i=0; $i<count(Auth::user()->products);$i++){
+
                     /* Este isset se ha puesto porque si el producto se encuentra en la lista de deseos y se quiere comprar mas de una cantidad de dicho producto
                        Provoca un error. El error que provoca es "undefined array key (posicion donde está numero del producto)
                        Es por esto que se ha puesto este isset que comprueba que existe la posicion del array a la que queremos acceder
