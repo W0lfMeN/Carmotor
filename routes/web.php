@@ -39,12 +39,12 @@ Route::get('/', function () {
 /* Vistas de la tienda principal */
 Route::get('/tienda', [TiendaController::class, 'tienda'])->name('tienda');
 Route::get('/tienda/{product:slug}', [TiendaController::class, 'tiendaProducto'])->name('tienda.producto');
-Route::middleware(['auth:sanctum', 'verified'])->get('/tienda/addDeseo/{product:slug}', [TiendaController::class, 'addDeseo'])->name('tienda.addDeseo');
-Route::middleware(['auth:sanctum', 'verified'])->get('/tienda/addCarrito/{product:slug}', [TiendaController::class, 'addCarrito'])->name('tienda.addCarrito');
-Route::middleware(['auth:sanctum', 'verified'])->get('/listaDeDeseos', [TiendaController::class, 'listaDeseos'])->name('tienda.deseos');
-Route::middleware(['auth:sanctum', 'verified'])->get('/carrito', [TiendaController::class, 'carrito'])->name('tienda.carrito');
-Route::middleware(['auth:sanctum', 'verified'])->get('/carrito/limpiar', [TiendaController::class, 'limpiarCarrito'])->name('carrito.limpiar');
-Route::middleware(['auth:sanctum', 'verified'])->get('/carrito/borrar/{id}', [TiendaController::class, 'borrarUnProductoCarrito'])->name('carrito.borrar');
+Route::middleware(['auth:sanctum'/* , 'verified' */])->get('/tienda/addDeseo/{product:slug}', [TiendaController::class, 'addDeseo'])->name('tienda.addDeseo');
+Route::middleware(['auth:sanctum'/* , 'verified' */])->get('/tienda/addCarrito/{product:slug}', [TiendaController::class, 'addCarrito'])->name('tienda.addCarrito');
+Route::middleware(['auth:sanctum'/* , 'verified' */])->get('/listaDeDeseos', [TiendaController::class, 'listaDeseos'])->name('tienda.deseos');
+Route::middleware(['auth:sanctum'/* , 'verified' */])->get('/carrito', [TiendaController::class, 'carrito'])->name('tienda.carrito');
+Route::middleware(['auth:sanctum'/* , 'verified' */])->get('/carrito/limpiar', [TiendaController::class, 'limpiarCarrito'])->name('carrito.limpiar');
+Route::middleware(['auth:sanctum'/* , 'verified' */])->get('/carrito/borrar/{id}', [TiendaController::class, 'borrarUnProductoCarrito'])->name('carrito.borrar');
 
 
 
@@ -63,19 +63,19 @@ Route::post('/contacto', [ContactoController::class, 'procesarFormulario'])->nam
 
 /* Zona donde colocaremos los enlaces donde solo podrán acceder los admins ademas de tener que verificar la cuenta */
 
-Route::middleware(['role', 'verified'])->resource('products', ProductController::class); # Carga todas las rutas de Products
+Route::middleware(['role'/* , 'verified' */])->resource('products', ProductController::class); # Carga todas las rutas de Products
 
 
-Route::middleware(['role', 'verified'])->get('/facturas', [FacturaController::class, 'index'])->name('facturas.index');
-Route::middleware(['role', 'verified'])->get('/facturas/{factura}', [FacturaController::class, 'show'])->name('facturas.show');
-Route::middleware(['role', 'verified'])->get('/facturasCsv', [FacturaController::class, 'exportarCsv'])->name('facturas.csv');
+Route::middleware(['role'/* , 'verified' */])->get('/facturas', [FacturaController::class, 'index'])->name('facturas.index');
+Route::middleware(['role'/* , 'verified' */])->get('/facturas/{factura}', [FacturaController::class, 'show'])->name('facturas.show');
+Route::middleware(['role'/* , 'verified' */])->get('/facturasCsv', [FacturaController::class, 'exportarCsv'])->name('facturas.csv');
 
-Route::middleware(['role', 'verified'])->resource('/admin/brands', BrandController::class); # Carga todas las rutas de Brand
+Route::middleware(['role'/* , 'verified' */])->resource('/admin/brands', BrandController::class); # Carga todas las rutas de Brand
 
-Route::middleware(['role', 'verified'])->resource('/admin/users', UserController::class); # Carga todas las rutas de Users
-Route::middleware(['role', 'verified'])->get('/admin/users/rol/{user}', [UserController::class, 'rol'])->name('users.rol'); #Llama al metodo para cambiar su rol
+Route::middleware(['role'/* , 'verified' */])->resource('/admin/users', UserController::class); # Carga todas las rutas de Users
+Route::middleware(['role'/* , 'verified' */])->get('/admin/users/rol/{user}', [UserController::class, 'rol'])->name('users.rol'); #Llama al metodo para cambiar su rol
 
-Route::middleware(['role', 'verified'])->get('/admin', function () {
+Route::middleware(['role'/* , 'verified' */])->get('/admin', function () {
     return view('adminDirectory.index'); # Carga la vista del panel de administrador del admin
 })->name('admin');
 
